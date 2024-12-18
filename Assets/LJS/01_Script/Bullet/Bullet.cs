@@ -72,7 +72,7 @@ namespace LJS.Bullets
         }
 
         public virtual void OnTriggerEnter2D(Collider2D other) {
-            if(other.gameObject.CompareTag("Dummy")){
+            if(other.TryGetComponent<Player>(out Player playerCompo)){
                 _destroyNow = true;
                 PoolManager.Instance.Push(this);
             }
@@ -117,6 +117,21 @@ namespace LJS.Bullets
         public void ResetItem()
         {
             _destroyNow = false;
+        }
+
+        public void DeleteLater(float time){
+            StartCoroutine(WaitCoro(time));
+        }
+
+        private IEnumerator WaitCoro(float time)
+        {
+            yield return new WaitForSeconds(time);
+            Destroy(gameObject);
+        }
+
+        public IEnumerator WaitAction(Action action, float time){
+            yield return new WaitForSeconds(time);
+            action?.Invoke();
         }
     }
 }

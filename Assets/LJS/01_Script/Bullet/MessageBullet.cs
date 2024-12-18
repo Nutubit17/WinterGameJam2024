@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using LJS.Bullets;
 using LJS.Enemys;
+using LJS.pool;
 using TMPro;
 using UnityEngine;
 
@@ -16,10 +17,15 @@ namespace LJS
             rbCompo = GetComponent<Rigidbody2D>();
         }
 
+        public override void Update() {
+            base.Update();
+        }
+
         public override void OnTriggerEnter2D(Collider2D other)
         {
-            if(other.gameObject.CompareTag("Dummy")){
+            if(other.TryGetComponent(out Player player)){
                 _destroyNow = true;
+                CameraEffecter.Instance.ShakeCamera(6,6,0.2f);
                 DestroyText();
             }
         }
@@ -27,6 +33,7 @@ namespace LJS
         public override void DestroyText()
         {
             rbCompo.gravityScale = 1;
+            StartCoroutine(WaitAction(() => PoolManager.Instance.Push(this), 3.5f));
         }
     }
 }

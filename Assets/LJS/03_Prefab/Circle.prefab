@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 1795069290543296410}
   - component: {fileID: 2992750209798884639}
   - component: {fileID: 8557559210021918975}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,5 +267,3 @@ MonoBehaviour:
   _spreadBullet: {fileID: 5853644643890728400, guid: 072ebd7a7dbe7434880fdc57c1ed5569, type: 3}
   _specialColor: {r: 0.16509077, g: 0.6360289, b: 0.6679245, a: 1}
   _whenSpread: 1
-  _spreadEffect: {fileID: 7818411678841977830, guid: 3122d5c870d525d4ba81accb627d0208, type: 3}
-  _bulletInfo: {fileID: 11400000, guid: 7bde1a9775260ee4f927fb2681e1e67d, type: 2}

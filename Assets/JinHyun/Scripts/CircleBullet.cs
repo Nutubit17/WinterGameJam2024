@@ -1,4 +1,5 @@
 using LJS.Enemys;
+using LJS.pool;
 using UnityEngine;
 
 namespace LJS.Bullets
@@ -9,8 +10,6 @@ namespace LJS.Bullets
         [SerializeField] private Bullet _spreadBullet;
         [SerializeField] private Color _specialColor;
         [SerializeField] private float _whenSpread;
-        [SerializeField] private GameObject _spreadEffect; // todo : fix to Pooling
-        [SerializeField] private BulletInfo _bulletInfo;
         
         private bool _circle;
         private float _currentTime;
@@ -37,8 +36,9 @@ namespace LJS.Bullets
             _circle = true;
             if(_text.Length == 1) return;
 
-            GameObject obj = Instantiate(_spreadEffect, transform.position, Quaternion.Euler(-90, 0, 0));
-            obj.GetComponent<ParticleSystem>().Play();
+            LJS.pool.IPoolable pool = PoolManager.Instance.Pop("ExplosionEffect");
+            pool.GetGameObject().transform.position = transform.position;
+            SoundManagerHelper.PlayEffect(SoundManager.Instance, "ExplosionEffect", 1);
 
             float angle = 360f /  _text.Length;
             for(int i = 0; i < _text.Length; ++i){
@@ -52,9 +52,10 @@ namespace LJS.Bullets
                 info.text = text[i].ToString();
 
                 Bullet bullet = Instantiate(_spreadBullet, transform.position, Quaternion.Euler(0, 0, angle + transform.rotation.eulerAngles.z));
+                bullet.DeleteLater(3.5f);
                 bullet.SetBullet(info, _owner, false, new Vector3(x, y, 0));
             }
-            Destroy(gameObject);
+            PoolManager.Instance.Push(this);
         }
     }
 }
