@@ -6,6 +6,11 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerMovement : EntityMovement
 {
+   [field:Header("Player Move Settings")]
+   [field:Tooltip("Debug")] [field:SerializeField] public bool IsDash { get; private set; }
+   [SerializeField] private float _dashAppendingSpeed = 2f;
+   [field:SerializeField] public float DashTime { get; private set; }  = 2f;
+
    [Header("Player Animation")]
    [SerializeField] private Transform _visual;
    private Vector2 _visualStartPosition;
@@ -24,7 +29,17 @@ public class PlayerMovement : EntityMovement
       _visualStartPosition = _visual.localPosition;
    }
 
-   
+   public void StartDash()
+   {
+      IsDash = true;
+      _speed += _dashAppendingSpeed;
+   }
+
+   public void EndDash()
+   {
+      IsDash = false;
+      _speed -= _dashAppendingSpeed;
+   }
 
    public virtual void Animation()
    {
@@ -70,4 +85,6 @@ public class PlayerMovement : EntityMovement
       _visual.localScale = (Vector3)Vector2.one * Mathf.Lerp(-scalingHalf + 1, scalingHalf + 1, currentScalingLerp) + Vector3.forward;
       _visual.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(-rotationHalf, rotationHalf, currentRotationLerp));
    }
+
+
 }
