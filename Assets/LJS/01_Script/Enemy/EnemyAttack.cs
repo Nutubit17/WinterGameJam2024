@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 namespace LJS.Enemys
 {
     public enum BulletType{
-        Normal, Spread, End
+        Normal = 0, Spread, Message, End
     }
 
     public class EnemyAttack : EntityAttack
@@ -18,6 +18,7 @@ namespace LJS.Enemys
         [Header("Spawn Setting")]
         [SerializeField] private Bullet _NormalbulletPrefab; // todo : fix to Pooling
         [SerializeField] private Bullet _SpreadbulletPrefab; // todo : fix to Pooling
+        [SerializeField] private Bullet _MessagebulletPrefab; // todo : fix to Pooling
         [SerializeField] private Transform _attackTrm;
 
         [Header("Attack Setting")]
@@ -68,6 +69,13 @@ namespace LJS.Enemys
                     bullet = Instantiate(_SpreadbulletPrefab, _attackTrm.position, Quaternion.identity);
                 }
                 break;
+                case BulletType.Message:
+                {
+                    bullet = Instantiate(_MessagebulletPrefab, _attackTrm.position, Quaternion.identity);
+                    bullet.SetBullet(_currentBulletInfo, _entity as Enemy, true, default, 1);
+                    OnAttack?.Invoke(bullet);
+                    return;
+                }
             }
 
             bullet.SetBullet(_currentBulletInfo, _entity as Enemy, true, default);
@@ -86,6 +94,11 @@ namespace LJS.Enemys
                 case (int)BulletType.Spread:
                 {
                     _currentBulletType = BulletType.Spread;
+                }
+                break;
+                case (int)BulletType.Message:
+                {
+                    _currentBulletType = BulletType.Message;
                 }
                 break;
             }

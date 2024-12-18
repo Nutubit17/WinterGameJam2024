@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4aaf995a9c2f24e864429f3024ea28, type: 3}
   m_Name: TestInfo
   m_EditorClassIdentifier: 
-  text: "\uD53C\uD574"
+  text: "\uAE30\uCD08\uC801\uC778\uC784\uD50C\uB780\uD2B8\uB2E4"
   attackType: 0
   speed: 7
