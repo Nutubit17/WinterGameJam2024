@@ -16,7 +16,7 @@ public class HpCollision : EntityCollision
 
    public void Init()
    {
-      MaxHp = _currentHp;
+      _currentHp = MaxHp;
    }
 
    public override bool Check()
