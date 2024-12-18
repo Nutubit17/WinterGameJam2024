@@ -49,7 +49,7 @@ public class SoundManager : MonoBehaviour
     }
 
     private AudioSource[] _audioSources = new AudioSource[(int)SoundType.Max];
-    private Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
+    public Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
     [SerializeField] private List<string> str = new List<string>();
     [SerializeField] private List<AudioClip> audioClips;
@@ -72,8 +72,12 @@ public class SoundManager : MonoBehaviour
 
             _audioSources[(int)SoundType.Bgm].loop = true; // 배경음은 무한 반복 재생
         }
-    }
 
+        for (int i = 0; i < _audioClips.Count; i++)
+        {
+            _audioClips.Add(str[i], audioClips[i]);
+        }
+    }
 
     public void Play(AudioClip clip, SoundType type = SoundType.Effect, float volume = 1.0f)
     {
