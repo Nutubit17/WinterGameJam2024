@@ -3,6 +3,7 @@ using LJS.Enemys;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class FollowBullet : Bullet
 {
@@ -19,12 +20,13 @@ public class FollowBullet : Bullet
     public override void Update()
     {
         transform.position += dir * bulletSpeed * Time.deltaTime;
-
         if (isResolve) return;
 
-        transform.rotation = Quaternion.Euler(dir.x, dir.y, 0);
-
         dir = (targetTrm.position - transform.position).normalized;
+
+        float rotZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
 
         if (durationTime <= timer)
         {
@@ -37,9 +39,10 @@ public class FollowBullet : Bullet
         }
     }
 
-    public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir, float fontSize = 0.2f )
-    {
-        base.SetBullet(info, owner, RotateToTarget, dir, fontSize);
-    }
+    //public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir)
+    //{
+    //    base.SetBullet(info, owner, RotateToTarget, dir);
+    //}
+
 
 }
