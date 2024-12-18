@@ -38,12 +38,12 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Dash"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""de77457e-221b-469d-b0aa-bdc33264653d"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -105,7 +105,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1ce656d6-4238-49f6-85b1-4219e220effb"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardAndMouse"",
@@ -120,7 +120,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             ""id"": ""086a03a3-07ee-4505-9029-f2a9537fb9ba"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""OpenSetting"",
                     ""type"": ""Button"",
                     ""id"": ""00ce3eb4-59d6-4351-8eaf-5b906395e3ea"",
                     ""expectedControlType"": ""Button"",
@@ -133,11 +133,11 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f25b187a-6e88-48ed-860d-1a81afc5c8a2"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardAndMouse"",
-                    ""action"": ""New action"",
+                    ""action"": ""OpenSetting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -169,7 +169,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
+        m_UI_OpenSetting = m_UI.FindAction("OpenSetting", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -285,12 +285,12 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_Newaction;
+    private readonly InputAction m_UI_OpenSetting;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
         public UIActions(@InputControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_UI_Newaction;
+        public InputAction @OpenSetting => m_Wrapper.m_UI_OpenSetting;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,16 +300,16 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @OpenSetting.started += instance.OnOpenSetting;
+            @OpenSetting.performed += instance.OnOpenSetting;
+            @OpenSetting.canceled += instance.OnOpenSetting;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @OpenSetting.started -= instance.OnOpenSetting;
+            @OpenSetting.performed -= instance.OnOpenSetting;
+            @OpenSetting.canceled -= instance.OnOpenSetting;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -343,6 +343,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     }
     public interface IUIActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnOpenSetting(InputAction.CallbackContext context);
     }
 }

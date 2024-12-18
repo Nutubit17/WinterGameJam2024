@@ -1,0 +1,65 @@
+using DG.Tweening;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
+
+public class SettingUI : MonoBehaviour, InputControls.IUIActions
+{
+    [SerializeField] private InputControls _inputControls;
+
+    [SerializeField] private CanvasGroup settingUI;
+
+    private bool isActive = false;
+
+    [SerializeField] private Slider SFXslider;
+    [SerializeField] private Slider BGMslider;
+
+    private void Start()
+    {
+        _inputControls = new InputControls();
+        _inputControls.Enable();
+        _inputControls.UI.Enable();
+        _inputControls.UI.SetCallbacks(this);
+
+        SFXslider.onValueChanged.AddListener(HandleSfxValueChange);
+        BGMslider.onValueChanged.AddListener(HandleBGMValueChange);
+    }
+
+    private void HandleBGMValueChange(float value)
+    {
+        SoundManager.Instance.SetAudioValue("BGM", value);
+    }
+
+    private void HandleSfxValueChange(float value)
+    {
+        SoundManager.Instance.SetAudioValue("SFX", value);
+
+    }
+
+    private void HandleOpenUI()
+    {
+        float duration = 0.3f;
+        if (isActive)
+        {
+            settingUI.DOFade(0, duration).SetEase(Ease.InCirc).OnComplete(() => Time.timeScale = 1).SetUpdate(true);
+
+            isActive = false;
+        }
+        else
+        {
+            settingUI.DOFade(1, duration).SetEase(Ease.InCirc).OnComplete(() => Time.timeScale = 0).SetUpdate(true);
+            isActive = true;
+        }
+    }
+
+
+
+    public void OnOpenSetting(InputAction.CallbackContext context)
+    {
+        HandleOpenUI();
+    }
+}

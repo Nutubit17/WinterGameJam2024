@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/JinHyun/Scenes/Title.unity
+    guid: f7b8dbf4f201c4c49b1d8b19b3528709
+  - enabled: 1
+    path: Assets/Kbh/Scenes/Game.unity
+    guid: e4dba5b842b52cf43b89f3ef1df7bf03
+  - enabled: 1
+    path: Assets/Kbh/Scenes/GameOver.unity
+    guid: 576cb151e3831d742b123f59ed7a3f3f
   m_configObjects: {}
