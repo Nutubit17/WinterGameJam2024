@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace LJS.Entites
 {
-    public abstract class EntityAttack : MonoBehaviour, IEntityComponent
+    public abstract class EntityAttack : MonoBehaviour, IEntityComponents
     {
         #region proprty, public
         public bool CanAttack { get; protected set; }

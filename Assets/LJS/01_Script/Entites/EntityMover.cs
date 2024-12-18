@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace LJS.Entites
 {
-    public class EntityMover : MonoBehaviour, IEntityComponent
+    public class EntityMover : MonoBehaviour, IEntityComponents
     {
         private Entity _entity;
 

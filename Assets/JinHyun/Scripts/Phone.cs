@@ -2,17 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Phone : MonoBehaviour
+public class Phone : MonoSingleton<Phone>
 {
-    public static Phone Instance;
-
-    void Awake()
-    {
-        if(Instance != null)
-        {
-            Destroy(gameObject);
-        }
-        
-        Instance = this;
-    }
+    
 }

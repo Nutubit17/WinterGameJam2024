@@ -291,4 +291,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textField: {fileID: 8881570105856173213}
-  _font: {fileID: 0}
+  _name: Message
