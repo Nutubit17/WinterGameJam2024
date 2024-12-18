@@ -18,7 +18,6 @@ public class GhostController : MonoBehaviour
     private float delta = 0;
     private int colorIndex;
 
-    private Playererer player;
     private SpriteRenderer spriteRenderer;
 
     private Queue<IPoolable> delteghost = new Queue<IPoolable>();
@@ -29,7 +28,6 @@ public class GhostController : MonoBehaviour
     {
         poolable = ghostPrefab;
         pool = new Pool(50, poolable);
-        player = GetComponent<Playererer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
