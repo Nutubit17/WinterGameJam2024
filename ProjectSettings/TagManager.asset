@@ -34,8 +34,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - bullet
+  - player
   - dummy
   - enemy
   m_SortingLayers:

@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 19338817038827306}
   - component: {fileID: 8077055327953037747}
   - component: {fileID: 8112125701755170447}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: SpreadBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,4 +267,3 @@ MonoBehaviour:
   _spreadBullet: {fileID: 5853644643890728400, guid: 072ebd7a7dbe7434880fdc57c1ed5569, type: 3}
   _specialColor: {r: 1, g: 0.6412373, b: 0, a: 1}
   _whenSpread: 1
-  _spreadEffect: {fileID: 7818411678841977830, guid: 60d5cc9f8e45f4e4a9093eb6276738f8, type: 3}

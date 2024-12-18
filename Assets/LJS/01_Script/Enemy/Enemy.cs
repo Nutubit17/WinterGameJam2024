@@ -31,7 +31,7 @@ namespace LJS.Enemys
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if(other.gameObject.CompareTag("Dummy")){
+            if(other.TryGetComponent(out Phone phone)){
                 behaviourTree.enabled = false;
                 PoolManager.Instance.Push(this);
             }
