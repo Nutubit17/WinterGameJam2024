@@ -27,8 +27,8 @@ public class GhostController : MonoBehaviour
     private void Start()
     {
         poolable = ghostPrefab;
-        pool = new Pool(50, poolable);
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        pool = new Pool(200, poolable);
+        spriteRenderer = transform.Find("Visual").GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()

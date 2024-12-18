@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1038213267712425499}
   - component: {fileID: 6573338448406236514}
   - component: {fileID: 2901922764945827860}
+  - component: {fileID: 8851834567220410780}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -128,7 +129,7 @@ MonoBehaviour:
     <DashTime>k__BackingField: 2
     _visual: {fileID: 2179500314569461670}
     _moveCycle: 0.5
-    _moveAmount: 0.25
+    _moveAmount: 0.1
     _rotateCycle: 0.15
     _rotateAmount: 15
     _scaleCycle: 0.1
@@ -159,11 +160,34 @@ MonoBehaviour:
       m_Bits: 0
   <VisualComponent>k__BackingField:
     _renderer: {fileID: 5755953393555610551}
+  _controller: {fileID: 8851834567220410780}
   _hitFeedback:
     _hitEffectTime: 0.1
     _hitSpriteTime: 0.5
     _hitStateChangeTime: 0.2
     _hitSprite: {fileID: 21300000, guid: be7fc2d15300dca41ae25193483ba05d, type: 3}
+--- !u!114 &8851834567220410780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216051872603821894}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1fcac8c9792db438c50483dff1bfa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostPrefab: {fileID: 8183752244022543628, guid: b75a16cad69ee5049adc7eae36a11a39, type: 3}
+  delay: 0.05
+  destroyTime: 1
+  colors:
+  - {r: 0.972549, g: 0.9019608, b: 0.007843138, a: 0.6}
+  - {r: 0.29411766, g: 1, b: 0.12941177, a: 0.6}
+  - {r: 0, g: 0.9411765, b: 1, a: 0.6}
+  - {r: 0.95686275, g: 0.8352941, b: 0.99215686, a: 0.6}
+  - {r: 0.46666667, g: 0.13333334, b: 0.5372549, a: 0.6}
+  material: {fileID: 0}
 --- !u!1 &2314653357691913547
 GameObject:
   m_ObjectHideFlags: 0
