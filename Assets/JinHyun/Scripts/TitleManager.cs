@@ -39,18 +39,18 @@ public class TitleManager : MonoBehaviour
             if(_baseKeys[i] == null) continue;
 
             if(_baseKeys[i].wasPressedThisFrame)
-            {
-                print(_baseKeys[i].name.ToString());
-                print(_baseKeyString);
-                _baseKeyString.Replace(_baseKeys[i].name.ToString(), " ");
                 _baseKeys[i] = null;
-            }
         }
-        
+        _baseKeyString = "";
+        foreach(var key in _baseKeys)
+        {
+            if(key == null) continue;
+            _baseKeyString += key.name.ToString();
+        }
         _announceString = new StringBuilder($"Press '{_baseKeyString}' to Start", 50);
         _announceTMP.text = _announceString.ToString();
 
-        if(_baseKeys.Count <= 0)
+        if(_baseKeyString == "")
         {
             _canStart = true;
         }
