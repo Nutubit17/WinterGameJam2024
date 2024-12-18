@@ -1,5 +1,5 @@
 {
-    "name": "PlayerControls",
+    "name": "InputControls",
     "maps": [
         {
             "name": "Player",
@@ -98,7 +98,7 @@
             "id": "086a03a3-07ee-4505-9029-f2a9537fb9ba",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "OpenSetting",
                     "type": "Button",
                     "id": "00ce3eb4-59d6-4351-8eaf-5b906395e3ea",
                     "expectedControlType": "Button",
@@ -111,11 +111,11 @@
                 {
                     "name": "",
                     "id": "f25b187a-6e88-48ed-860d-1a81afc5c8a2",
-                    "path": "",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardAndMouse",
-                    "action": "New action",
+                    "action": "OpenSetting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
