@@ -237,7 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6594c1220e33a4991f9d9ff36faafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 5853644643890728400, guid: 072ebd7a7dbe7434880fdc57c1ed5569, type: 3}
+  _NormalbulletPrefab: {fileID: 5853644643890728400, guid: 072ebd7a7dbe7434880fdc57c1ed5569, type: 3}
+  _SpreadbulletPrefab: {fileID: 8112125701755170447, guid: 48d666b8eb3ac17438461d53b444b934, type: 3}
   _attackTrm: {fileID: 160248070}
   lookTarget: {fileID: 857680332}
   _attackProbability: 80
@@ -352,7 +353,7 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(509.834167,159.961884)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-0.16583252,119.961884)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-154.665833,139.961914)"},"ID":2,"Name":"MoveSeq","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckTarget","NodeData":{"Offset":"(-90,110)"},"ID":3,"Name":"Check
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(509.834167,159.961884)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-0.16583252,119.961884)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-154.665833,139.961914)"},"ID":2,"Name":"MoveSeq","Instant":true,"Disabled":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckTarget","NodeData":{"Offset":"(-90,110)"},"ID":3,"Name":"Check
         Target","Instant":true,"SharedVariablevariable":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"TargetTrm","IsShared":true},"LayerMask_layerMask":1073741824},{"Type":"MoveTo","NodeData":{"Offset":"(83.33417,111.961914)"},"ID":4,"Name":"Move
         To","Instant":true,"EnemyClass_enemy":{"Type":"EnemyClass","Name":"Enemy","IsShared":true,"EnemymValue":0},"SharedVariablevariable":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"TargetTrm","IsShared":true}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(174.334167,147.961884)"},"ID":5,"Name":"AttackSeq","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CanAttack","NodeData":{"Offset":"(-79.66583,105.961914)"},"ID":6,"Name":"Can
         Attack","Instant":true,"EnemyClass_enemyClass":{"Type":"EnemyClass","Name":"Enemy","IsShared":true,"EnemymValue":1}},{"Type":"Attack","NodeData":{"Offset":"(67.33417,107.961914)"},"ID":7,"Name":"Attack","Instant":true,"EnemyClass_enemyClass":{"Type":"EnemyClass","Name":"Enemy","IsShared":true,"EnemymValue":2}}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"TargetTrm","IsShared":true},{"Type":"EnemyClass","Name":"Enemy","IsShared":true,"EnemymValue":3}]}'

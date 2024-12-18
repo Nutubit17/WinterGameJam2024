@@ -3,6 +3,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using LJS;
 using LJS.Entites;
+using LJS.Enemys;
 
 public class CanAttack : Conditional
 {
