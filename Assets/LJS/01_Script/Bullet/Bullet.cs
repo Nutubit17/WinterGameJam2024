@@ -12,20 +12,20 @@ namespace LJS.Bullets
         #region Base
         protected BulletInfo _info;
         protected Enemy _owner;
-        private Transform _target;
-        private Vector3 _dir;
-        private Color _originColor;
+        protected Transform _target;
+        protected Vector3 _dir;
+        protected Color _originColor;
         protected bool _destroyNow;
         #endregion
         
         #region Stat
-        private AttackType _attackType;
-        private float _speed;
+        protected AttackType _attackType;
+        protected float _speed;
         protected string _text;
         #endregion
 
         #region Componenet
-        private BoxCollider2D _boxCollider;
+        protected BoxCollider2D _boxCollider;
         #endregion
 
         #region Field
