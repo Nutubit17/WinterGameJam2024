@@ -14,7 +14,7 @@ public class TestShooting : MonoBehaviour
         {
             Bullet obj2 = Instantiate(obj, transform.position, Quaternion.identity);
             obj2.SetBullet(_info, null, false);
-            (obj2 as FollowBullet).targetTrm = _target;
+            (obj2 as CircleBullet).TestTrm = _target;
         }
     }
 }
