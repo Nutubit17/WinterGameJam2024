@@ -22,6 +22,7 @@ public class TitleManager : MonoBehaviour
 
     void Start()
     {
+        SoundManager.Instance.Play(SoundManager.Instance.AudioClips["TitleBGM"]);
         _baseKeys = new List<KeyControl>{Keyboard.current.wKey, Keyboard.current.aKey, Keyboard.current.sKey, Keyboard.current.dKey, Keyboard.current.spaceKey};
         foreach(var key in _baseKeys)
         {

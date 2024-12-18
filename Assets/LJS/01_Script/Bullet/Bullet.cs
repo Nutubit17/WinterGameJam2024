@@ -31,7 +31,7 @@ namespace LJS.Bullets
         [SerializeField] protected TextMeshPro _textField;
         #endregion
 
-        public virtual void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir){
+        public virtual void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir = default){
             _boxCollider = GetComponent<BoxCollider2D>();
 
             _info = info;
@@ -50,7 +50,6 @@ namespace LJS.Bullets
                 float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, rotZ);
                 _dir = _target.position - transform.position;
-                Debug.Log(_dir.normalized);
             }
             else{
                 _dir = dir;
