@@ -32,6 +32,14 @@ public class PlayerMovement : EntityMovement, IEntityComponent
       _visualStartPosition = _visual.localPosition;
    }
 
+   public override void Move(Vector2 direction)
+   {
+      if (_currentDir != direction && direction.sqrMagnitude != 0) // 방향이 바뀌면 소리 발생
+         SoundManager.Instance.PlayEffect(CONST.PLAYER_FLIP_SFX, 0.2f);
+
+      base.Move(direction);
+   }
+
    public void SetDash(bool isDash)
    {
       if (_owner.Status.CurrentStamina <= 0) 
@@ -41,7 +49,9 @@ public class PlayerMovement : EntityMovement, IEntityComponent
 
       IsDash = isDash;
 
+      SoundManager.Instance.PlayEffect(isDash ? CONST.GET_IN_SANDI_SFX : CONST.GET_OUT_SANDI_SFX);
       _owner.Status.AddSpeed(_dashAppendingSpeed * (isDash ? 1 : -1));
+
       Update();
    }
    

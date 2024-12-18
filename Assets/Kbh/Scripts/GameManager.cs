@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
    public void Awake()
    {
-      //SoundManager.Instance.PlayBGM();
+      SoundManager.Instance.PlayBGM(CONST.IN_GAME_BGM);
    }
 
 
