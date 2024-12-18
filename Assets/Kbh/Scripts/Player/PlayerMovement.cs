@@ -49,7 +49,7 @@ public class PlayerMovement : EntityMovement, IEntityComponent
 
       IsDash = isDash;
 
-      SoundManager.Instance.PlayEffect(isDash ? CONST.GET_IN_SANDI_SFX : CONST.GET_OUT_SANDI_SFX);
+      SoundManager.Instance.PlayEffect(isDash ? CONST.GET_IN_SANDI_SFX : CONST.GET_OUT_SANDI_SFX, 2);
       _owner.Status.AddSpeed(_dashAppendingSpeed * (isDash ? 1 : -1));
 
       Update();
