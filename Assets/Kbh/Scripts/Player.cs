@@ -34,7 +34,7 @@ public class Player : MonoBehaviour, IEntity
       Input.Init();
 
       Input.OnMoveEvent += HandleOnMoveEvent;
-      Input.OnDashEvent += HandleOnDashEvent;
+      //Input.OnDashEvent += HandleOnDashEvent;
 
       _hitFeedback.Init(this);
       _dieFeedback.Init(this);
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour, IEntity
    private void OnDestroy()
    {
       Input.OnMoveEvent -= HandleOnMoveEvent;
-      Input.OnDashEvent -= HandleOnDashEvent;
+      //Input.OnDashEvent -= HandleOnDashEvent;
    }
 
    private void Update()

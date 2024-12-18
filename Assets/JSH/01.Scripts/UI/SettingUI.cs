@@ -10,7 +10,6 @@ using static UnityEngine.Rendering.DebugUI;
 public class SettingUI : MonoBehaviour, InputControls.IUIActions
 {
     [SerializeField] private InputControls _inputControls;
-    [SerializeField] private GameObject player;
 
     [SerializeField] private CanvasGroup settingUI;
 
