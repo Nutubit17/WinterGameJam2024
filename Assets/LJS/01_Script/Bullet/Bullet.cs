@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using LJS.Enemys;
+using LJS.pool;
 using TMPro;
 using UnityEngine;
 
 namespace LJS.Bullets
 {
-    public class Bullet : MonoBehaviour
+    public class Bullet : MonoBehaviour, LJS.pool.IPoolable
     {
         #region Base
         protected BulletInfo _info;
@@ -31,6 +32,9 @@ namespace LJS.Bullets
         #region Field
 
         [SerializeField] protected TextMeshPro _textField;
+
+        [SerializeField] private string _name;
+        public string ItemName => _name;
         #endregion
 
         public virtual void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir = default, float fontSize = 0.2f){
@@ -70,7 +74,7 @@ namespace LJS.Bullets
         public virtual void OnTriggerEnter2D(Collider2D other) {
             if(other.gameObject.CompareTag("Dummy")){
                 _destroyNow = true;
-                DestroyText();
+                PoolManager.Instance.Push(this);
             }
         }
 
@@ -103,6 +107,16 @@ namespace LJS.Bullets
             else{
                 _textField.color = _originColor;
             }
+        }
+
+        public GameObject GetGameObject()
+        {
+            return gameObject;
+        }
+
+        public void ResetItem()
+        {
+            _destroyNow = false;
         }
     }
 }

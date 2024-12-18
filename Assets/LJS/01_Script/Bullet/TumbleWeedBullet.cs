@@ -55,7 +55,7 @@ namespace LJS.Bullets
                     float x = Mathf.Cos((angle * i + currentAngle) * Mathf.Deg2Rad) * Mathf.Rad2Deg * _raidus;
                     float y = Mathf.Sin((angle * i + currentAngle) * Mathf.Deg2Rad) * Mathf.Rad2Deg * _raidus;
 
-                    _rotateTrmList[i].localPosition = new Vector3(x, y, 0);
+                    _rotateTrmList[i].position = new Vector3(x, y, 0);
                 }
                 currentAngle += Time.deltaTime;
                 yield return null;

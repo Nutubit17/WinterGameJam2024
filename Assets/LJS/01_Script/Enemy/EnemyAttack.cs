@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
 using LJS.Bullets;
-using LJS.Enemys;
 using LJS.Entites;
-using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace LJS.Enemys
 {
     public enum BulletType{
-        Normal = 0, Spread, Message, TumbleWeed, End
+        Normal = 0, Spread, Message, Circle,  End
     }
 
     public class EnemyAttack : EntityAttack
@@ -19,13 +17,14 @@ namespace LJS.Enemys
         [SerializeField] private Bullet _NormalbulletPrefab; // todo : fix to Pooling
         [SerializeField] private Bullet _SpreadbulletPrefab; // todo : fix to Pooling
         [SerializeField] private Bullet _MessagebulletPrefab; // todo : fix to Pooling
-        [SerializeField] private Bullet _TumbleWeedbulletPrefab; // todo : fix to Pooling
+        [SerializeField] private Bullet _CirclebulletPrefab; // todo : fix to Pooling
         [SerializeField] private Transform _attackTrm;
 
         [Header("Attack Setting")]
         public Transform lookTarget;
-        [SerializeField] private int _attackProbability; // todo : fix to Stat
         [SerializeField] private float _attackCoolTime; // todo : fix to Stat
+        [SerializeField] private float _attackProbability; // todo : fix to Stat
+        [SerializeField] private BulletType _bulletType;
 
         [Header("Bullet Setting")]
         [SerializeField] private List<BulletInfo> _damageTextList;
@@ -36,8 +35,11 @@ namespace LJS.Enemys
         #endregion
         private float _lastAttackTime = 0f;
         private AttackType _currentAttackType;
-        private BulletType _currentBulletType;
         private BulletInfo _currentBulletInfo;
+
+        private void Awake() {
+            lookTarget = Phone.Instance.transform;
+        }
 
         private void Update(){
             if(_lastAttackTime <= 0){
@@ -55,12 +57,9 @@ namespace LJS.Enemys
         public override void ExcuteAttack()
         {
             CanAttack = false;
-            RandomSelectingBullet();
-            RandomSelectAttackType();
             
             Bullet bullet = null;
-            _currentBulletType = BulletType.TumbleWeed;
-            switch(_currentBulletType){
+            switch(_bulletType){
                 case BulletType.Normal:
                 {
                     bullet = Instantiate(_NormalbulletPrefab, _attackTrm.position, Quaternion.identity);
@@ -78,42 +77,15 @@ namespace LJS.Enemys
                     OnAttack?.Invoke(bullet);
                     return;
                 }
-                case BulletType.TumbleWeed:
+                case BulletType.Circle:
                 {
-                    bullet = Instantiate(_TumbleWeedbulletPrefab, _attackTrm.position, Quaternion.identity);
+                    bullet = Instantiate(_CirclebulletPrefab, _attackTrm.position, Quaternion.identity);
                 }
                 break;
             }
 
             bullet.SetBullet(_currentBulletInfo, _entity as Enemy, true, default);
             OnAttack?.Invoke(bullet);
-        }
-
-        private void RandomSelectingBullet()
-        {
-            int randNum = Random.Range(0, (int)BulletType.End);
-            switch(randNum){
-                case (int)BulletType.Normal:
-                {
-                    _currentBulletType = BulletType.Normal;
-                }
-                break;
-                case (int)BulletType.Spread:
-                {
-                    _currentBulletType = BulletType.Spread;
-                }
-                break;
-                case (int)BulletType.Message:
-                {
-                    _currentBulletType = BulletType.Message;
-                }
-                break;
-                case (int)BulletType.TumbleWeed:
-                {
-                    _currentBulletType = BulletType.TumbleWeed;
-                }
-                break;
-            }
         }
 
         public void RandomSelectAttackType(){

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using LJS.Enemys;
 using UnityEngine;
 
@@ -12,8 +10,7 @@ namespace LJS.Bullets
         [SerializeField] private Color _specialColor;
         [SerializeField] private float _whenSpread;
         [SerializeField] private GameObject _spreadEffect; // todo : fix to Pooling
-
-        public Transform TestTrm;
+        [SerializeField] private BulletInfo _bulletInfo;
         
         private bool _circle;
         private float _currentTime;
@@ -33,7 +30,7 @@ namespace LJS.Bullets
         public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir, float fontSize)
         {
             _textField.color = _specialColor;
-            base.SetBullet(info, owner, RotateToTarget, dir);
+            base.SetBullet(info, owner, RotateToTarget, dir, fontSize);
         }
 
         private void CircleNow(){
@@ -45,8 +42,8 @@ namespace LJS.Bullets
 
             float angle = 360f /  _text.Length;
             for(int i = 0; i < _text.Length; ++i){
-                float x = Mathf.Cos(angle * i * Mathf.Deg2Rad) * Mathf.Rad2Deg * 0.1f;
-                float y = Mathf.Sin(angle * i * Mathf.Deg2Rad) * Mathf.Rad2Deg * 0.1f;
+                float x = Mathf.Cos(angle * i * Mathf.Deg2Rad) * Mathf.Rad2Deg * 0.05f;
+                float y = Mathf.Sin(angle * i * Mathf.Deg2Rad) * Mathf.Rad2Deg * 0.05f;
 
                 string text = _info.text;
                 BulletInfo info = new BulletInfo();
@@ -54,8 +51,8 @@ namespace LJS.Bullets
                 info.attackType = _info.attackType;
                 info.text = text[i].ToString();
 
-                Bullet bullet = Instantiate(_spreadBullet, new Vector3(x,y,0) + transform.position, Quaternion.Euler(0, 0, angle + transform.rotation.eulerAngles.z));
-                bullet.SetBullet(info, _owner, false, bullet.transform.right);
+                Bullet bullet = Instantiate(_spreadBullet, transform.position, Quaternion.Euler(0, 0, angle + transform.rotation.eulerAngles.z));
+                bullet.SetBullet(info, _owner, false, new Vector3(x, y, 0));
             }
             Destroy(gameObject);
         }
