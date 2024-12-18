@@ -10,7 +10,6 @@ public class Player : MonoBehaviour, IEntity
 
    [field: Header("Collision Checks")]
    [field: SerializeField] public HpCollision EnemyDetector { get; private set; }
-   [field: SerializeField] public EntityCollision WallDetector { get; private set; }
 
    [field: Header("Visual settings")]
    [field: SerializeField] public EntityVisual VisualComponent { get; private set; }
@@ -26,7 +25,7 @@ public class Player : MonoBehaviour, IEntity
    [SerializeField] private PlayerStaminaUI _staminaUI;
 
 
-   private void Awake()
+   private void Start()
    {
       Status.Init();
 
@@ -66,8 +65,6 @@ public class Player : MonoBehaviour, IEntity
       {
          Time.timeScale = 0.5f;
       }
-
-      WallDetector.Check();
 
       _moveEffectController.enabled = Movement.IsDash;
    }
