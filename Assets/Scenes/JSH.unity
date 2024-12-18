@@ -242,7 +242,6 @@ MonoBehaviour:
   - {r: 0, g: 0.9411765, b: 1, a: 0.6}
   - {r: 0.95686275, g: 0.8352941, b: 0.99215686, a: 0.6}
   - {r: 0.46666667, g: 0.13333334, b: 0.5372549, a: 0.6}
-  material: {fileID: 0}
 --- !u!1 &168861917
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +358,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

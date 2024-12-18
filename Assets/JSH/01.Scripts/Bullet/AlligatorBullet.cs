@@ -39,9 +39,9 @@ public class AlligatorBullet : Bullet
         _child2.transform.DORotate(new Vector3(0, 0, 0), 1f).SetEase(Ease.OutExpo));
     }
 
-    public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir)
+    public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir, float fontSize)
     {
-        base.SetBullet(info, owner, RotateToTarget, dir);
+        base.SetBullet(info, owner, RotateToTarget, dir, fontSize);
         _child1 = transform.GetChild(0);
         _child2 = transform.GetChild(1);
     }
