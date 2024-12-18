@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,31 +6,72 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-   [SerializeField] private PlayerMovement _movement;
-   [SerializeField] private PlayerInput _input;
+   [field:Header("Required Settings")]
+   [field:SerializeField] public PlayerMovement Movement { get; private set; }
+   [field:SerializeField] public PlayerInput Input { get; private set; }
+
+   [field:Header("Collision Checks")]
+   [field:SerializeField] public HpCollision EnemyDetector { get; private set; }
+   [field:SerializeField] public EntityCollision WallDetector { get; private set; }
+
+   [field:Header("Visual settings")]
+   [field:SerializeField] public EntityVisual VisualComponent { get; private set; }
+
+   [Header("Feedbacks")]
+   [SerializeField] private PlayerHitFeedback _hitFeedback;
+   [SerializeField] private PlayerDieFeedback _dieFeedback;
+
 
    private void Awake()
    {
-      _movement.Init();
-      _input.Init();
+      EnemyDetector.Init();
+      Movement.Init();
+      Input.Init();
 
-      _input.OnMoveEvent += HandleOnMoveEvent;
-      _input.OnDashEvent += HandleOnDashEvent;
+      Input.OnMoveEvent += HandleOnMoveEvent;
+      Input.OnDashEvent += HandleOnDashEvent;
+
+      _hitFeedback.Init(this);
+      _dieFeedback.Init(this);
+   }
+
+   private void OnDestroy()
+   {
+      Input.OnMoveEvent -= HandleOnMoveEvent;
+      Input.OnDashEvent -= HandleOnDashEvent;
    }
 
    private void Update()
    {
-      _movement.Animation();
+      Movement.Animation();
    }
+
+   private void FixedUpdate()
+   {
+      if(!Movement.IsDash) // dash 중에는 enemy 무시
+         EnemyDetector.Check();
+
+      WallDetector.Check();
+   }
+
 
    private void HandleOnMoveEvent(Vector2 dir)
    {
-      _movement.Move(dir);
+      Movement.Move(dir);
    }
 
    private void HandleOnDashEvent()
    {
+      Movement.StartDash();
+      Input.DisableDash();
 
+      Movement.Update();
+
+      DOVirtual.DelayedCall(Movement.DashTime, () =>
+      {
+         Movement.EndDash();
+         Input.EnableDash();
+      });
    }
 
 }
