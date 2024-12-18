@@ -2,10 +2,10 @@ using System;
 using UnityEngine;
 
 [System.Serializable]
-public class HpCollision : EntityCollision
+public class HpCollision : EntityCollision, IEntityComponent
 {
-   [field: SerializeField] public int MaxHp { get; private set; } = 5;
-   [SerializeField] private int _currentHp;
+   private IEntity _owner;
+
    [SerializeField] private bool _isNoDamageTime = false;
    [SerializeField] private float _noDamageTime = 2f;
    [SerializeField] private float _lastLaunchedNoDamageTime = 0;
@@ -14,9 +14,10 @@ public class HpCollision : EntityCollision
    public event Action OnNoDamageTimeEndEvent;
 
 
-   public void Init()
+   public void Init(IEntity entity)
    {
-      _currentHp = MaxHp;
+      _owner = entity;
+      OnHpChangeEvent?.Invoke(entity.Status.CurrentHp);
    }
 
    public override bool Check()
@@ -31,8 +32,8 @@ public class HpCollision : EntityCollision
 
       if (result && !_isNoDamageTime)
       {
-         _currentHp = Mathf.Max(0, _currentHp - 1);
-         OnHpChangeEvent?.Invoke(_currentHp);
+         _owner.Status.AddHp(-1);
+         OnHpChangeEvent?.Invoke(_owner.Status.CurrentHp);
 
          _isNoDamageTime = true;
          _lastLaunchedNoDamageTime = Time.time;

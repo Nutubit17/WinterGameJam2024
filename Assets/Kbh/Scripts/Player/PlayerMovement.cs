@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerMovement : EntityMovement
+public class PlayerMovement : EntityMovement, IEntityComponent
 {
+   private IEntity _owner;
+
    [field:Header("Player Move Settings")]
    [field:Tooltip("Debug")] [field:SerializeField] public bool IsDash { get; private set; }
    [SerializeField] private float _dashAppendingSpeed = 2f;
@@ -24,29 +26,41 @@ public class PlayerMovement : EntityMovement
    [SerializeField] private float _scaleCycle = 0.5f;
    [SerializeField] private float _scaleAmount = 0.1f;
 
-   public virtual void Init()
+   public void Init(IEntity entity)
    {
+      _owner = entity;
       _visualStartPosition = _visual.localPosition;
    }
 
-   public void StartDash()
+   public void SetDash(bool isDash)
    {
-      IsDash = true;
-      _speed += _dashAppendingSpeed;
-   }
+      if (_owner.Status.CurrentStamina <= 0) 
+         isDash = false;
 
-   public void EndDash()
-   {
-      IsDash = false;
-      _speed -= _dashAppendingSpeed;
-   }
+      if (isDash == IsDash) return;
 
-   public virtual void Animation()
+      IsDash = isDash;
+
+      _owner.Status.AddSpeed(_dashAppendingSpeed * (isDash ? 1 : -1));
+      Update();
+   }
+   
+   public virtual void UpdateByFrame()
    {
       if (_currentDir.magnitude == 0)
          IdleAnimation();
       else
          MoveAnimation();
+
+      if(!IsDash)
+         _owner.Status.AddStamina(Time.deltaTime);
+      else
+      {
+         _owner.Status.AddStamina(-Time.deltaTime);
+
+         if (_owner.Status.CurrentStamina <= 0)
+            SetDash(false);
+      }
    }
 
    private void IdleAnimation()
@@ -86,5 +100,5 @@ public class PlayerMovement : EntityMovement
       _visual.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(-rotationHalf, rotationHalf, currentRotationLerp));
    }
 
-
+   
 }
