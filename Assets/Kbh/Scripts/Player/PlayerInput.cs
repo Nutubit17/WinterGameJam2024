@@ -9,6 +9,7 @@ public class PlayerInput : InputControls.IPlayerActions
 {
    private InputControls _inputControls;
 
+   [SerializeField] private bool _dashEnabled = true;
    [SerializeField] private float _dashCoolTime = 2f;
    [Tooltip("Debug")][SerializeField] private float _lastDashedTime = 0f;
    [Tooltip("Debug")][field:SerializeField] public Vector2 MoveDirection { get; private set; }
@@ -30,7 +31,7 @@ public class PlayerInput : InputControls.IPlayerActions
 
    private bool CanDash()
    {
-      return _lastDashedTime < Time.time + _dashCoolTime;
+      return _lastDashedTime + _dashCoolTime < Time.time  && _dashEnabled;
    }
 
    public void OnMove(InputAction.CallbackContext context)
@@ -39,12 +40,20 @@ public class PlayerInput : InputControls.IPlayerActions
       OnMoveEvent?.Invoke(MoveDirection);
    }
 
+   public void EnableDash()
+   {
+      _dashEnabled = true;
+      _lastDashedTime = Time.time;
+   }
+   public void DisableDash() => _dashEnabled = false;
+
+
    public void OnDash(InputAction.CallbackContext context)
    {
       if (context.performed && CanDash())
       {
          OnDashEvent?.Invoke();
-         _lastDashedTime = Time.time;
       }
    }
+
 }
