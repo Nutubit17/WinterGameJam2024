@@ -10,7 +10,6 @@ public class GhostController : MonoBehaviour
     [SerializeField] private float delay = 1.0f;
     [SerializeField] private float destroyTime = 0.1f;
     [SerializeField] private Color[] colors;
-    [SerializeField] private Material material;
 
 
     private IPoolable poolable;
