@@ -7,6 +7,7 @@ public class Playererer : MonoBehaviour
 {
     private GhostController controller;
 
+    [SerializeField] private float moveSpeed = 5f;
     private void Start()
     {
         controller = GetComponent<GhostController>();
@@ -18,7 +19,7 @@ public class Playererer : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        transform.position += new Vector3(x, y, 0).normalized * Time.deltaTime;
+        transform.position += new Vector3(x, y, 0).normalized * Time.deltaTime * moveSpeed;
 
         if (Input.GetKey(KeyCode.Space))
         {

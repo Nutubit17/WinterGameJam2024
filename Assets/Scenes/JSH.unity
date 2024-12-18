@@ -180,8 +180,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1902256023
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47225cff8012db2438d50dc6454fdd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 10
 --- !u!114 &161346728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,14 +234,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1fcac8c9792db438c50483dff1bfa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 2335386500364848394, guid: b75a16cad69ee5049adc7eae36a11a39, type: 3}
-  delay: 0.2
+  ghostPrefab: {fileID: 8183752244022543628, guid: b75a16cad69ee5049adc7eae36a11a39, type: 3}
+  delay: 0.05
   destroyTime: 1
-  color:
-  - {r: 0, g: 0, b: 0, a: 0.8}
-  - {r: 0, g: 0, b: 0, a: 0.6}
-  - {r: 0, g: 0, b: 0, a: 0.4}
-  - {r: 0, g: 0, b: 0, a: 0.2}
+  colors:
+  - {r: 0.972549, g: 0.9019608, b: 0.007843138, a: 0.6}
+  - {r: 0.29411766, g: 1, b: 0.12941177, a: 0.6}
+  - {r: 0, g: 0.9411765, b: 1, a: 0.6}
+  - {r: 0.95686275, g: 0.8352941, b: 0.99215686, a: 0.6}
+  - {r: 0.46666667, g: 0.13333334, b: 0.5372549, a: 0.6}
   material: {fileID: 0}
 --- !u!1 &168861917
 GameObject:
@@ -383,5 +385,5 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 168861920}
   - {fileID: 161346726}
+  - {fileID: 168861920}

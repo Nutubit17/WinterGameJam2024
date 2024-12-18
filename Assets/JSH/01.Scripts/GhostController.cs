@@ -1,27 +1,34 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
 
 public class GhostController : MonoBehaviour
 {
-    [SerializeField] private GameObject ghostPrefab;
+    [SerializeField] private Ghost ghostPrefab;
     [SerializeField] private float delay = 1.0f;
     [SerializeField] private float destroyTime = 0.1f;
-    [SerializeField] private Color[] color;
+    [SerializeField] private Color[] colors;
     [SerializeField] private Material material;
 
 
+    private IPoolable poolable;
     private float delta = 0;
-    private int colorIdx = 0;
+    private int colorIndex;
 
     private Playererer player;
     private SpriteRenderer spriteRenderer;
 
+    private Queue<IPoolable> delteghost = new Queue<IPoolable>();
+
+    Pool pool;
 
     private void Start()
     {
+        poolable = ghostPrefab;
+        pool = new Pool(50, poolable);
         player = GetComponent<Playererer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -29,6 +36,11 @@ public class GhostController : MonoBehaviour
     private void OnEnable()
     {
         delta = delay;
+    }
+
+    private void OnDisable()
+    {
+        StartCoroutine(DelayDelete());
     }
 
     private void Update()
@@ -46,37 +58,31 @@ public class GhostController : MonoBehaviour
 
     private void CreateGhost()
     {
-        GameObject ghostObject = Instantiate(ghostPrefab, transform.position, transform.rotation);
-        ghostObject.transform.localScale = player.transform.localScale;
+        pool.TryPop(ref poolable);
+        Transform trm = (poolable as Ghost).transform;
+        trm.position = transform.position;
+        SpriteRenderer ghostSpr = trm.GetComponent<SpriteRenderer>();
+        ghostSpr.sprite = spriteRenderer.sprite;
 
-        Destroy(ghostObject, destroyTime);
-
-        StartCoroutine(ColorGradient(ghostObject));
+        // 색깔 적용
+        if (colors.Length > 0)
+        {
+            ghostSpr.color = colors[colorIndex]; // 현재 색 적용
+            colorIndex = (colorIndex + 1) % colors.Length; // 다음 색으로 이동
+        }
+        delteghost.Enqueue(poolable);
     }
 
-    IEnumerator ColorGradient(GameObject ghostObject)
+    IEnumerator DelayDelete()
     {
-        SpriteRenderer ghostSpr = ghostObject.GetComponent<SpriteRenderer>();
-        ghostSpr.sprite = spriteRenderer.sprite;
-        if (material != null)
-        {
-            ghostSpr.material = material;
-        }
-        float timer = 0;
+        yield return new WaitForSeconds(1);
 
         while (true)
         {
-            ghostSpr.color = color[colorIdx];
-            yield return new WaitForSeconds(delay);
-
-            if (colorIdx + 1 >= color.Length)
-            {
-
-            }
-            else
-            {
-                colorIdx++;
-            }
+            if (delteghost.Count == 0)
+                break;
+            yield return new WaitForSeconds(0.03f);
+            pool.TryPush(delteghost.Dequeue());
         }
     }
 }
