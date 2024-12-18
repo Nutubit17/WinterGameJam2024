@@ -39,10 +39,10 @@ public class FollowBullet : Bullet
         }
     }
 
-    public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir)
-    {
-        base.SetBullet(info, owner, RotateToTarget, dir);
-    }
+    //public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir)
+    //{
+    //    base.SetBullet(info, owner, RotateToTarget, dir);
+    //}
 
 
 }
