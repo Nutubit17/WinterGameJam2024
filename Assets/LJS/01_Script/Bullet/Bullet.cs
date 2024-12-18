@@ -9,8 +9,8 @@ namespace LJS.Bullets
     public class Bullet : MonoBehaviour
     {
         #region Base
-        private BulletInfo _info;
-        private Enemy _owner;
+        protected BulletInfo _info;
+        protected Enemy _owner;
         private Transform _target;
         private Vector3 _dir;
         #endregion
@@ -18,7 +18,7 @@ namespace LJS.Bullets
         #region Stat
         private AttackType _attackType;
         private float _speed;
-        private string _text;
+        protected string _text;
         #endregion
 
         #region Componenet
@@ -30,7 +30,7 @@ namespace LJS.Bullets
         [SerializeField] private TextMeshPro _textField;
         #endregion
 
-        public void SetBullet(BulletInfo info, Enemy owner){
+        public void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir){
             _boxCollider = GetComponent<BoxCollider2D>();
 
             _info = info;
@@ -42,13 +42,23 @@ namespace LJS.Bullets
 
             _textField.text = _text;
 
-            _target = _owner.GetCompo<EnemyAttack>().lookTarget;
-            _dir = _target.position - transform.position;
+            if(RotateToTarget){
+                _target = _owner.GetCompo<EnemyAttack>().lookTarget;
+
+                Vector2 newPos = _target.position - transform.position;
+                float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0, 0, rotZ);
+                _dir = _target.position - transform.position;
+                Debug.Log(_dir.normalized);
+            }
+            else{
+                _dir = dir;
+            }
 
             _boxCollider.size = new Vector3(_text.Length * _textField.rectTransform.localScale.x + 0.15f, 0.3f);
         }
 
-        private void Update() {
+        public virtual void Update() {
             transform.position += _dir.normalized * _speed * Time.deltaTime;
         }
 

@@ -7,13 +7,20 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace LJS
+namespace LJS.Enemys
 {
+    public enum BulletType{
+        Normal, Spread, End
+    }
+
     public class EnemyAttack : EntityAttack
     {
-        [Header("Attack Setting")]
-        [SerializeField] private Bullet _bulletPrefab; // todo : fix to Pooling
+        [Header("Spawn Setting")]
+        [SerializeField] private Bullet _NormalbulletPrefab; // todo : fix to Pooling
+        [SerializeField] private Bullet _SpreadbulletPrefab; // todo : fix to Pooling
         [SerializeField] private Transform _attackTrm;
+
+        [Header("Attack Setting")]
         public Transform lookTarget;
         [SerializeField] private int _attackProbability; // todo : fix to Stat
         [SerializeField] private float _attackCoolTime; // todo : fix to Stat
@@ -27,6 +34,7 @@ namespace LJS
         #endregion
         private float _lastAttackTime = 0f;
         private AttackType _currentAttackType;
+        private BulletType _currentBulletType;
         private BulletInfo _currentBulletInfo;
 
         private void Update(){
@@ -45,16 +53,42 @@ namespace LJS
         public override void ExcuteAttack()
         {
             CanAttack = false;
+            RandomSelectingBullet();
             RandomSelectAttackType();
             
-            Bullet bullet = Instantiate(_bulletPrefab, _attackTrm.position, Quaternion.identity);
+            Bullet bullet = null;
+            switch(_currentBulletType){
+                case BulletType.Normal:
+                {
+                    bullet = Instantiate(_NormalbulletPrefab, _attackTrm.position, Quaternion.identity);
+                }
+                break;
+                case BulletType.Spread:
+                {
+                    bullet = Instantiate(_SpreadbulletPrefab, _attackTrm.position, Quaternion.identity);
+                }
+                break;
+            }
 
-            Vector2 newPos = lookTarget.position - transform.position;
-            float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
-            bullet.transform.rotation = Quaternion.Euler(0, 0, rotZ);
-
-            bullet.SetBullet(_currentBulletInfo, _entity as Enemy);
+            bullet.SetBullet(_currentBulletInfo, _entity as Enemy, true, default);
             OnAttack?.Invoke(bullet);
+        }
+
+        private void RandomSelectingBullet()
+        {
+            int randNum = Random.Range(0, (int)BulletType.End);
+            switch(randNum){
+                case (int)BulletType.Normal:
+                {
+                    _currentBulletType = BulletType.Normal;
+                }
+                break;
+                case (int)BulletType.Spread:
+                {
+                    _currentBulletType = BulletType.Spread;
+                }
+                break;
+            }
         }
 
         public void RandomSelectAttackType(){
