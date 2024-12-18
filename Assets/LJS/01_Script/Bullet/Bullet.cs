@@ -13,6 +13,7 @@ namespace LJS.Bullets
         protected Enemy _owner;
         private Transform _target;
         private Vector3 _dir;
+        private Color _originColor;
         #endregion
         
         #region Stat
@@ -27,10 +28,10 @@ namespace LJS.Bullets
 
         #region Field
 
-        [SerializeField] private TextMeshPro _textField;
+        [SerializeField] protected TextMeshPro _textField;
         #endregion
 
-        public void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir){
+        public virtual void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir){
             _boxCollider = GetComponent<BoxCollider2D>();
 
             _info = info;
@@ -56,6 +57,7 @@ namespace LJS.Bullets
             }
 
             _boxCollider.size = new Vector3(_text.Length * _textField.rectTransform.localScale.x + 0.15f, 0.3f);
+            _originColor = _textField.color;
         }
 
         public virtual void Update() {
@@ -78,7 +80,7 @@ namespace LJS.Bullets
                 }
             }
             else{
-                _textField.color = Color.white;
+                _textField.color = _originColor;
             }
         }
     }
