@@ -28,7 +28,7 @@ namespace LJS.Bullets
             }
         }
 
-        public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir)
+        public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir, float fontSize)
         {
             _textField.color = _specialColor;
             base.SetBullet(info, owner, RotateToTarget, dir);
@@ -44,8 +44,14 @@ namespace LJS.Bullets
 
             for(int i = 0; i < _text.Length; ++i){
                 Bullet bullet = Instantiate(_spreadBullet, transform.position, Quaternion.Euler(0, 0, currentAngle + transform.rotation.eulerAngles.z));
-                Debug.Log(bullet.transform.right.normalized);
-                bullet.SetBullet(_info, _owner, false, bullet.transform.right);
+                string text = _info.text;
+                BulletInfo info = new BulletInfo();
+
+                info.speed = _info.speed;
+                info.attackType = _info.attackType;
+
+                info.text = text[i].ToString();
+                bullet.SetBullet(info, _owner, false, bullet.transform.right);
                 currentAngle += 105f / _text.Length;
             }
             Destroy(gameObject);
