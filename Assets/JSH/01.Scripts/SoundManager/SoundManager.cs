@@ -52,7 +52,7 @@ public class SoundManager : MonoBehaviour
     }
 
     private AudioSource[] _audioSources = new AudioSource[(int)SoundType.Max];
-    public Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
+    public Dictionary<string, AudioClip> AudioClips = new Dictionary<string, AudioClip>();
     [SerializeField] private List<string> str = new List<string>();
     [SerializeField] private List<AudioClip> audioClips = new List<AudioClip>();
 
@@ -83,7 +83,7 @@ public class SoundManager : MonoBehaviour
        
         for (int i = 0; i < audioClips.Count; i++)
         {
-            _audioClips.Add(str[i], audioClips[i]);
+            AudioClips.Add(str[i], audioClips[i]);
 
         }
        //Play(_audioClips["TitleBGM"], SoundType.BGM, 1f); 
