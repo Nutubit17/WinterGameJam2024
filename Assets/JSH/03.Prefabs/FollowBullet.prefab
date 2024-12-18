@@ -265,5 +265,5 @@ MonoBehaviour:
   _textField: {fileID: 1818951025670514853}
   targetTrm: {fileID: 0}
   durationTime: 3
-  bulletSpeed: 4
+  bulletSpeed: 3
   plusSpeed: 2
