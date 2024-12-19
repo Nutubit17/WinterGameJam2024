@@ -38,7 +38,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-      if (instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -82,12 +82,6 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-       
-       //Play(_audioClips["TitleBGM"], SoundType.BGM, 1f); 
-    }
-
     public void Play(AudioClip clip, SoundType type = SoundType.SFX, float volume = 1.0f)
     {
         if (clip == null)
@@ -113,6 +107,7 @@ public class SoundManager : MonoBehaviour
 
     public void SetAudioValue(string v, float value)
     {
+        Debug.Log(v);
         if (v == "SFX")
             _audioSources[(int)SoundType.SFX].volume = value;
         else

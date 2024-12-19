@@ -52,7 +52,7 @@ public class SettingUI : MonoBehaviour, InputControls.IUIActions
     private void HandleSfxValueChange(float value)
     {
         SoundManager.Instance.SetAudioValue("SFX", value);
-
+        Debug.Log(value);
     }
 
     private void HandleOpenUI()
