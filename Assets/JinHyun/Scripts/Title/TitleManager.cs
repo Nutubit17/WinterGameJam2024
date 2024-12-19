@@ -18,6 +18,8 @@ public class TitleManager : MonoBehaviour
    [SerializeField] private TextMeshProUGUI _announceTMP;
    [SerializeField] private ParticleSystem _particleSystem;
 
+   [SerializeField] private Image _upImage, _downImage;
+
    private List<KeyControl> _baseKeys;
    private StringBuilder _announceString;
    private string _baseKeyString;
@@ -29,6 +31,7 @@ public class TitleManager : MonoBehaviour
 
    void Start()
    {
+      SetUpGameStartScene();
       _backgroundImage.material = Instantiate(_backgroundImage.material);
 
       SoundManager.Instance.PlayBGM(CONST.TITLE_BGM);
@@ -42,6 +45,14 @@ public class TitleManager : MonoBehaviour
       _announceTMP.DOFade(0, 1.2f).SetLoops(-1, LoopType.Yoyo);
       _titleText.DOFade(1, 0.2f);
    }
+
+   private void SetUpGameStartScene()
+   {
+      float duration = 1f;
+      _upImage.rectTransform.DOAnchorMin(new(0, 1), duration).SetEase(Ease.InOutFlash);
+      _downImage.rectTransform.DOAnchorMax(new(1, 0), duration).SetEase(Ease.InOutFlash);
+   }
+
 
    void Update()
    {
@@ -98,6 +109,7 @@ public class TitleManager : MonoBehaviour
             VolumeManager.Instance.DOBloomIntensity(10, 4f).SetEase(Ease.InQuint)
                .OnComplete(() =>
                {
+                  Debug.Log("abc");
                   VolumeManager.Instance.DOFilmGain(0, 2f);
                   VolumeManager.Instance.DOBloomIntensity(1f, 4f).SetEase(Ease.OutQuint);
                   VolumeManager.Instance.DOLensDistortion(0f, 4f).SetEase(Ease.OutQuint);

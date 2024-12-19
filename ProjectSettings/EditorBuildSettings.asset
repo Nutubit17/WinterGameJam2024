@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Kbh/Scenes/Game.unity
     guid: e4dba5b842b52cf43b89f3ef1df7bf03
+  - enabled: 1
+    path: Assets/JinHyun/Scenes/GameOverScene.unity
+    guid: 2da6862ea605265499508bcb324ea13f
   m_configObjects: {}

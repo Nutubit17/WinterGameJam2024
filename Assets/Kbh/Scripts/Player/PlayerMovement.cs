@@ -59,6 +59,8 @@ public class PlayerMovement : EntityMovement, IEntityComponent
       _owner.Status.AddSpeed(_dashAppendingSpeed * (isDash ? 1 : -1));
 
       VolumeManager.Instance.DOBloomIntensity(IsDash ? 3f : 1f, 0.1f);
+      VolumeManager.Instance.DOChromatic(IsDash ? 0.6f : 0f, 0.1f);
+      VolumeManager.Instance.DOLensDistortion(IsDash ? 0.3f : 0f, 0.1f);
 
       Update();
    }

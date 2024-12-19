@@ -9,7 +9,7 @@ public class CONST
 
    public const string GAME_START_SCENE_NAME = "Title";
    public const string GAME_SCENE_NAME = "Game";
-   public const string GAME_OVER_SCENE_NAME = "GameOver";
+   public const string GAME_OVER_SCENE_NAME = "GameOverScene";
 
    public const string TITLE_BGM = "TitleBGM";
    public const string IN_GAME_BGM = "InGameBGM";

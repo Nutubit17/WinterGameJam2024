@@ -1,12 +1,16 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class PlayerDieFeedback : EntityFeedback<Player>
 {
+   [SerializeField] private Image _upImage, _downImage;
+
    public override void Init(Player instance)
    {
       base.Init(instance);
@@ -21,6 +25,14 @@ public class PlayerDieFeedback : EntityFeedback<Player>
 
    public override void Execute()
    {
-      SceneManager.LoadScene(CONST.GAME_OVER_SCENE_NAME);
+      ShutDownGameOverScene();
+   }
+
+   private void ShutDownGameOverScene()
+   {
+      float duration = 1f;
+      _upImage.rectTransform.DOAnchorMin(new(0, 0.5f), duration).SetEase(Ease.InOutFlash);
+      _downImage.rectTransform.DOAnchorMax(new(1, 0.5f), duration).SetEase(Ease.InOutFlash)
+         .OnComplete(() => DOVirtual.DelayedCall(1f, () => SceneManager.LoadScene(CONST.GAME_OVER_SCENE_NAME)));
    }
 }
