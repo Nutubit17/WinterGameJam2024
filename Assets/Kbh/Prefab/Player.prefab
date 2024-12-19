@@ -138,6 +138,8 @@ MonoBehaviour:
     _rotateAmount: 15
     _scaleCycle: 0.1
     _scaleAmount: 0.15
+    _leftDownPosition: {x: 0, y: 0}
+    _rightUpPosition: {x: 0, y: 0}
   <Input>k__BackingField:
     _dashEnabled: 1
     <MoveDirection>k__BackingField: {x: 0, y: 0}
@@ -170,7 +172,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216051872603821894}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b1fcac8c9792db438c50483dff1bfa8, type: 3}
   m_Name: 
@@ -178,12 +180,13 @@ MonoBehaviour:
   ghostPrefab: {fileID: 8183752244022543628, guid: b75a16cad69ee5049adc7eae36a11a39, type: 3}
   delay: 0.05
   destroyTime: 1
-  colors:
-  - {r: 0.972549, g: 0.9019608, b: 0.007843138, a: 0.6}
-  - {r: 0.29411766, g: 1, b: 0.12941177, a: 0.6}
-  - {r: 0, g: 0.9411765, b: 1, a: 0.6}
-  - {r: 0.95686275, g: 0.8352941, b: 0.99215686, a: 0.6}
-  - {r: 0.46666667, g: 0.13333334, b: 0.5372549, a: 0.6}
+  _ghostMat: {fileID: 2100000, guid: aa895576c42e702478214f4abf446612, type: 2}
+  _ghostColors:
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.943, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 0.7411765, g: 0, b: 1, a: 1}
+  - {r: 0.7411765, g: 0, b: 1, a: 1}
 --- !u!1 &2076771029633067814
 GameObject:
   m_ObjectHideFlags: 0

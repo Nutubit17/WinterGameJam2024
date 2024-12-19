@@ -266,4 +266,4 @@ MonoBehaviour:
   _item: {fileID: 11400000, guid: ffbeab50ce012db48b9e42db9af8d138, type: 2}
   _spreadBullet: {fileID: 5853644643890728400, guid: 072ebd7a7dbe7434880fdc57c1ed5569, type: 3}
   _specialColor: {r: 1, g: 0.6412373, b: 0, a: 1}
-  _whenSpread: 1.2
+  _whenSpread: 0.7

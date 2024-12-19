@@ -18,4 +18,5 @@ public class CONST
    public const string GET_OUT_SANDI_SFX = "GetOutSandiSFX";
    public const string PLAYER_HIT_SFX = "PlayerHitSFX";
    public const string PLAYER_FLIP_SFX = "PlayerFlipSFX";
+   public const string EXPLOSION_SFX = "ExplosionSFX";
 }

@@ -58,6 +58,8 @@ public class PlayerMovement : EntityMovement, IEntityComponent
       SoundManager.Instance.PlayEffect(isDash ? CONST.GET_IN_SANDI_SFX : CONST.GET_OUT_SANDI_SFX, 2);
       _owner.Status.AddSpeed(_dashAppendingSpeed * (isDash ? 1 : -1));
 
+      VolumeManager.Instance.DOBloomIntensity(IsDash ? 3f : 1f, 0.1f);
+
       Update();
    }
    
@@ -69,10 +71,10 @@ public class PlayerMovement : EntityMovement, IEntityComponent
          MoveAnimation();
 
       if(!IsDash)
-         _owner.Status.AddStamina(Time.deltaTime);
+         _owner.Status.AddStamina(Time.deltaTime / 2);
       else
       {
-         _owner.Status.AddStamina(-Time.deltaTime);
+         _owner.Status.AddStamina(-Time.deltaTime * 3.5f);
 
          if (_owner.Status.CurrentStamina <= 0)
             SetDash(false);
