@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -25,8 +26,22 @@ public class SettingUI : MonoBehaviour, InputControls.IUIActions
         _inputControls.UI.Enable();
         _inputControls.UI.SetCallbacks(this);
 
+        settingUI.alpha = 0;
+        settingUI.interactable = false;
+        settingUI.blocksRaycasts = false;
+
         SFXslider.onValueChanged.AddListener(HandleSfxValueChange);
         BGMslider.onValueChanged.AddListener(HandleBGMValueChange);
+    }
+
+    private void OnDestroy()
+    {
+        _inputControls.UI.Disable();
+        settingUI.alpha = 0;
+        settingUI.interactable = false;
+        settingUI.blocksRaycasts = false;
+        VolumeManager.Instance.ResetDepthOfField();
+        Time.timeScale = 1;
     }
 
     private void HandleBGMValueChange(float value)
@@ -46,12 +61,17 @@ public class SettingUI : MonoBehaviour, InputControls.IUIActions
         if (isActive)
         {
             settingUI.DOFade(0, duration).SetEase(Ease.InCirc).OnComplete(() => Time.timeScale = 1).SetUpdate(true);
-
+            VolumeManager.Instance.DODepthOfField(false, duration);
+            settingUI.interactable = false;
+            settingUI.blocksRaycasts = false;
             isActive = false;
         }
         else
         {
             settingUI.DOFade(1, duration).SetEase(Ease.InCirc).OnComplete(() => Time.timeScale = 0).SetUpdate(true);
+            VolumeManager.Instance.DODepthOfField(true, duration);
+            settingUI.interactable = true;
+            settingUI.blocksRaycasts = true;
             isActive = true;
         }
     }
