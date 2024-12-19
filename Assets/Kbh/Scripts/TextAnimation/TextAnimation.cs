@@ -103,12 +103,12 @@ public class TextAnimation : MonoBehaviour
 
             // Color
             float colorPercent = (Mathf.Sin((Time.time / _colorMoveCycle + targetWeight) * _colorMoveSpeed) + 1) / 2;
-            _colors[i] = _gradient.Evaluate(colorPercent) + Color.white * _emissionPower.Evaluate(colorPercent);
-
+            _colors[i] = _text.color * (_gradient.Evaluate(colorPercent) + Color.white * _emissionPower.Evaluate(colorPercent));
 
 
             // Scaling Y
             float moveAmount = ((Mathf.Sin((Time.time / _verticeScalingCycle + currentCharIdx) + 1) / 2 * _verticeScalingSpeed) * _verticeScalingAmount);
+
 
             switch (vtxPosition)
             {

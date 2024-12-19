@@ -40,6 +40,7 @@ public class TitleManager : MonoBehaviour
 
       _announceString = new StringBuilder($"Press '{_baseKeyString}' to Start", 50);
       _announceTMP.DOFade(0, 1.2f).SetLoops(-1, LoopType.Yoyo);
+      _titleText.DOFade(1, 0.2f);
    }
 
    void Update()
