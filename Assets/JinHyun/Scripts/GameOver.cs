@@ -19,7 +19,7 @@ public class GameOver : MonoBehaviour
     void Start()
     {
          _enteredTime = Time.time;
-        _tier.text = "Tier\n"+GetCapacityTier(ScoreManager.Instance.CurrentScore);
+        _tier.text = $"{string.Format("{0:F1}", (float)ScoreManager.Instance.CurrentScore / 1000)}GB\nScore";
         _time.text = ((int)ScoreManager.Instance.CurrentTime).ToString() + "\n SEC";
 
       _isActive = true;
