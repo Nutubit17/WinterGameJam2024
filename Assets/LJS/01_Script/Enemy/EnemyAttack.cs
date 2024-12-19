@@ -44,7 +44,7 @@ namespace LJS.Enemys
         private void Update(){
             if(_lastAttackTime <= 0){
                 CanAttack = true;
-                _lastAttackTime = 0.1f;
+                _lastAttackTime = Time.time;
                 return;
             } 
                 
@@ -74,6 +74,12 @@ namespace LJS.Enemys
                 break;
                 case BulletType.Message:
                 {
+                    if(Vector3.Distance(_attackTrm.position, lookTarget.position) < 5f)
+                    {
+                        bullet = PoolManager.Instance.Pop(_NormalbulletName.poolName);
+                        break;
+                    }
+
                     bullet = PoolManager.Instance.Pop(_MessagebulletName.poolName);
                     bulletCompo = bullet.GetGameObject().GetComponent<Bullet>();
                     bullet.GetGameObject().transform.position = _attackTrm.position;

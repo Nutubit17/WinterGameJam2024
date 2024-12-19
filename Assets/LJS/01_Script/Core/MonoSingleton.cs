@@ -31,6 +31,12 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
+
+    protected virtual void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void OnDisable()
     {
         IsDestoryed = true;

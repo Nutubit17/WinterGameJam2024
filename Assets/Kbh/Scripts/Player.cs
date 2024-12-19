@@ -58,12 +58,12 @@ public class Player : MonoBehaviour, IEntity
    {
       if (!Movement.IsDash) // dash 중에는 enemy 무시
       {
-         EnemyDetector.Check();
-         Time.timeScale = 1f;
+            EnemyDetector.Check();
+            Time.timeScale = 1f;
       }
       else
       {
-         Time.timeScale = 0.5f;
+         Time.timeScale = 0.35f;
       }
 
       _moveEffectController.enabled = Movement.IsDash;

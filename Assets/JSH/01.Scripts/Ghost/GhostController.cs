@@ -9,7 +9,8 @@ public class GhostController : MonoBehaviour
     [SerializeField] private Ghost ghostPrefab;
     [SerializeField] private float delay = 1.0f;
     [SerializeField] private float destroyTime = 0.1f;
-    [SerializeField] private Color[] colors;
+    [SerializeField] private Material _ghostMat;
+    [SerializeField] private Color[] _ghostColors;
 
 
     private IPoolable poolable;
@@ -57,14 +58,16 @@ public class GhostController : MonoBehaviour
         pool.TryPop(ref poolable);
         Transform trm = (poolable as Ghost).transform;
         trm.position = transform.position;
+        trm.localScale = transform.localScale;
         SpriteRenderer ghostSpr = trm.GetComponent<SpriteRenderer>();
         ghostSpr.sprite = spriteRenderer.sprite;
+        ghostSpr.material = _ghostMat;
 
         // 색깔 적용
-        if (colors.Length > 0)
+        if (_ghostColors.Length > 0)
         {
-            ghostSpr.color = colors[colorIndex]; // 현재 색 적용
-            colorIndex = (colorIndex + 1) % colors.Length; // 다음 색으로 이동
+            ghostSpr.material.SetColor("_MainColor", _ghostColors[colorIndex]); // 현재 색 적용
+            colorIndex = (colorIndex + 1) % _ghostColors.Length; // 다음 색으로 이동
         }
         delteghost.Enqueue(poolable);
     }

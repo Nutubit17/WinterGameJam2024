@@ -56,7 +56,8 @@ namespace LJS.Bullets
                 Vector2 newPos = _target.position - transform.position;
                 float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, rotZ);
-                _dir = _target.position - transform.position;
+                Debug.Log(_dir);
+                _dir = _target.position - owner.transform.position;
             }
             else{
                 _dir = dir;
@@ -73,6 +74,9 @@ namespace LJS.Bullets
 
         public virtual void OnTriggerEnter2D(Collider2D other) {
             if(other.TryGetComponent<Player>(out Player playerCompo)){
+                if (playerCompo.Movement.IsDash)
+                    return;
+
                 _destroyNow = true;
                 PoolManager.Instance.Push(this);
             }
