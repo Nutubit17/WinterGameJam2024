@@ -84,11 +84,11 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-       
+    
        //Play(_audioClips["TitleBGM"], SoundType.BGM, 1f); 
     }
 
-    public void Play(AudioClip clip, SoundType type = SoundType.SFX, float volume = 1.0f)
+    public void Play(AudioClip clip, SoundType type = SoundType.SFX)
     {
         if (clip == null)
             return;
@@ -99,13 +99,11 @@ public class SoundManager : MonoBehaviour
             {
                 audioSource.Stop();
             }
-            audioSource.volume = volume;
             audioSource.PlayOneShot(clip); // �� ���� ���
         }
         else // Sound.Bgm
         {
             AudioSource audioSource = _audioSources[(int)SoundType.BGM];
-            audioSource.volume = volume;
             audioSource.clip = clip;
             audioSource.Play();
         }

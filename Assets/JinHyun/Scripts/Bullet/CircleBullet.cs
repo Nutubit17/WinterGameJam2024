@@ -45,7 +45,7 @@ namespace LJS.Bullets
 
             LJS.pool.IPoolable pool = PoolManager.Instance.Pop("ExplosionEffect");
             pool.GetGameObject().transform.position = transform.position;
-            SoundManager.Instance.PlayEffect(CONST.EXPLOSION_SFX, 1);
+            SoundManager.Instance.PlayEffect(CONST.EXPLOSION_SFX);
 
             float angle = 360f /  _text.Length;
             for(int i = 0; i < _text.Length; ++i){

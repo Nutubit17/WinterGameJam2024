@@ -4,14 +4,14 @@ using UnityEngine;
 
 public static class SoundManagerHelper
 {
-   public static void PlayBGM(this SoundManager soundManager, string clipName, float volume = 1)
+   public static void PlayBGM(this SoundManager soundManager, string clipName)
    {
-      soundManager.Play(soundManager.AudioClips[clipName], SoundType.BGM, volume);
+      soundManager.Play(soundManager.AudioClips[clipName], SoundType.BGM);
    }
 
-   public static void PlayEffect(this SoundManager soundManager, string clipName, float volume = 1)
+   public static void PlayEffect(this SoundManager soundManager, string clipName)
    {
-      soundManager.Play(soundManager.AudioClips[clipName], SoundType.SFX, volume);
+      soundManager.Play(soundManager.AudioClips[clipName], SoundType.SFX);
    }
 
 }

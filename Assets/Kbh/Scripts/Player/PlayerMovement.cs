@@ -40,8 +40,8 @@ public class PlayerMovement : EntityMovement, IEntityComponent
 
    public override void Move(Vector2 direction)
    {
-      if (_currentDir != direction && direction.sqrMagnitude != 0) // ¹æÇâÀÌ ¹Ù²î¸é ¼Ò¸® ¹ß»ý
-         SoundManager.Instance.PlayEffect(CONST.PLAYER_FLIP_SFX, 0.2f);
+      if (_currentDir != direction && direction.sqrMagnitude != 0) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½Ò¸ï¿½ ï¿½ß»ï¿½
+         SoundManager.Instance.PlayEffect(CONST.PLAYER_FLIP_SFX);
 
       base.Move(direction);
    }
@@ -55,7 +55,7 @@ public class PlayerMovement : EntityMovement, IEntityComponent
 
       IsDash = isDash;
 
-      SoundManager.Instance.PlayEffect(isDash ? CONST.GET_IN_SANDI_SFX : CONST.GET_OUT_SANDI_SFX, 2);
+      SoundManager.Instance.PlayEffect(isDash ? CONST.GET_IN_SANDI_SFX : CONST.GET_OUT_SANDI_SFX);
       _owner.Status.AddSpeed(_dashAppendingSpeed * (isDash ? 1 : -1));
 
       VolumeManager.Instance.DOBloomIntensity(IsDash ? 3f : 1f, 0.1f);

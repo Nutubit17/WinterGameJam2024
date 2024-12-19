@@ -48,7 +48,7 @@ namespace LJS.Bullets
 
             LJS.pool.IPoolable obj = PoolManager.Instance.Pop("SpreadEffect");
             obj.GetGameObject().transform.position = transform.position;
-            SoundManager.Instance.PlayEffect(CONST.EXPLOSION_SFX, 1);
+            SoundManager.Instance.PlayEffect(CONST.EXPLOSION_SFX);
 
             for (int i = 0; i < _text.Length; ++i){
                 Bullet bullet = Instantiate(_spreadBullet, transform.position, Quaternion.Euler(0, 0, currentAngle + transform.rotation.eulerAngles.z));

@@ -40,7 +40,7 @@ public class PlayerHitFeedback : EntityFeedback<Player>
 
    public override void Execute()
     {
-        SoundManager.Instance.PlayEffect(CONST.PLAYER_HIT_SFX, 0.2f);
+        SoundManager.Instance.PlayEffect(CONST.PLAYER_HIT_SFX);
 
       _isHitStateProp.SetValue(CONST.TRUE);
       _instance.VisualComponent.SetSprite(_hitSprite);
