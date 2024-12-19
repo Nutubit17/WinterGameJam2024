@@ -9,8 +9,8 @@ namespace LJS
     {
         private ParticleSystem _particleSystem;
 
-        [SerializeField] private string _name;
-        public string ItemName => _name;
+        [SerializeField] private PoolItemSO _item;
+        public string ItemName => _item.poolName;
 
         public GameObject GetGameObject()
         {

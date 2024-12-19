@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8571c911b62048468857db2184297ae, type: 3}
   m_Name: Chrome
   m_EditorClassIdentifier: 
+  poolName: Chrome
   prefab: {fileID: 3132926719348187520, guid: 1622357090fc84242bc85631cd43ce40, type: 3}
   count: 7

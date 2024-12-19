@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8571c911b62048468857db2184297ae, type: 3}
   m_Name: SpreadEffect
   m_EditorClassIdentifier: 
+  poolName: SpreadEffect
   prefab: {fileID: 7818411678841977830, guid: 60d5cc9f8e45f4e4a9093eb6276738f8, type: 3}
   count: 7

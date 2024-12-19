@@ -54,6 +54,8 @@ namespace LJS.Bullets
                 Bullet bullet = Instantiate(_spreadBullet, transform.position, Quaternion.Euler(0, 0, angle + transform.rotation.eulerAngles.z));
                 bullet.DeleteLater(3.5f);
                 bullet.SetBullet(info, _owner, false, new Vector3(x, y, 0));
+
+                SpawnManager.Instance.AddSpawnedList(SpawnType.Bullet, bullet);
             }
             PoolManager.Instance.Push(this);
         }
