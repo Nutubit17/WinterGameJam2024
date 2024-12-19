@@ -114,7 +114,7 @@ namespace LJS.Bullets
             return gameObject;
         }
 
-        public void ResetItem()
+        public virtual void ResetItem()
         {
             _destroyNow = false;
         }
