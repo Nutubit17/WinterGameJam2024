@@ -32,7 +32,7 @@ public class EntityStatus
 
    public void AddHp(int amount)
    {
-      CurrentHp = Mathf.Max(CurrentHp + amount, 0);
+      CurrentHp = Mathf.Clamp(CurrentHp + amount, 0, MaxHp);
    }
 
    public void AddStamina(float amount)

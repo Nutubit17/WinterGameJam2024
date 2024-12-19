@@ -6,10 +6,14 @@ public class Player : MonoBehaviour, IEntity
    [field: Header("Required Settings")]
    [field: SerializeField] public EntityStatus Status { get; set; }
    [field: SerializeField] public PlayerMovement Movement { get; private set; }
-   [field: SerializeField] public PlayerInput Input { get; private set; }
 
+   [field: SerializeField] public PlayerInput Input { get; private set; }
+   
    [field: Header("Collision Checks")]
    [field: SerializeField] public HpCollision EnemyDetector { get; private set; }
+   [field: SerializeField] public EntityCollision healDetector { get; private set; }
+   [SerializeField] private PlayerHPUI _playerHpUI;
+
 
    [field: Header("Visual settings")]
    [field: SerializeField] public EntityVisual VisualComponent { get; private set; }
@@ -56,9 +60,17 @@ public class Player : MonoBehaviour, IEntity
 
    private void FixedUpdate()
    {
-      if (!Movement.IsDash) // dash Áß¿¡´Â enemy ¹«½Ã
+      if(healDetector.Check())
       {
-            EnemyDetector.Check();
+         Status.AddHp(1);
+         Status.AddStamina(1);
+         _playerHpUI.SetHp(Status.CurrentHp);
+         _staminaUI.SetGauge(Status.CurrentStamina / Status.MaxStamina);
+      }
+
+      EnemyDetector.Check();
+      if (!Movement.IsDash) // dash ï¿½ß¿ï¿½ï¿½ï¿½ enemy ï¿½ï¿½ï¿½ï¿½
+      {
             Time.timeScale = 1f;
       }
       else

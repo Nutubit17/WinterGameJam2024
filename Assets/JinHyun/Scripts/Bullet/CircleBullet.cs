@@ -26,10 +26,10 @@ namespace LJS.Bullets
             }
         }
 
-        public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir, float fontSize)
+        public override void SetBullet(BulletInfo info, Enemy owner, Vector3 pos, bool RotateToTarget, Vector3 dir, float fontSize)
         {
             _textField.color = _specialColor;
-            base.SetBullet(info, owner, RotateToTarget, dir, fontSize);
+            base.SetBullet(info, owner, pos, RotateToTarget, dir, fontSize);
         }
 
         public override void ResetItem()
@@ -61,7 +61,7 @@ namespace LJS.Bullets
                 Bullet bullet = Instantiate(_spreadBullet, transform.position, Quaternion.Euler(0, 0, angle + transform.rotation.eulerAngles.z));
                 bullet.gameObject.layer = 28;
                 bullet.DeleteLater(3.5f);
-                bullet.SetBullet(info, _owner, false, new Vector3(x, y, 0));
+                bullet.SetBullet(info, _owner, transform.position, false, new Vector3(x, y, 0));
 
                 SpawnManager.Instance.AddSpawnedList(SpawnType.Bullet, bullet);
             }

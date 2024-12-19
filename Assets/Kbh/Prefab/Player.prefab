@@ -129,7 +129,7 @@ MonoBehaviour:
     _currentDir: {x: 0, y: 0}
     _rigidbody2D: {fileID: 6573338448406236514}
     <IsDash>k__BackingField: 0
-    _dashAppendingSpeed: 5
+    _dashAppendingSpeed: 10
     <DashTime>k__BackingField: 2
     _visual: {fileID: 2179500314569461670}
     _moveCycle: 0.5
@@ -153,6 +153,14 @@ MonoBehaviour:
     _isNoDamageTime: 0
     _noDamageTime: 1.5
     _lastLaunchedNoDamageTime: 0
+  <healDetector>k__BackingField:
+    _targetCollider: {fileID: 1038213267712425499}
+    _collisionCheckWay: 1
+    _checkingTagName: 
+    _checkingLayer:
+      serializedVersion: 2
+      m_Bits: 134217728
+  _playerHpUI: {fileID: 3420227115045100206}
   <VisualComponent>k__BackingField:
     _renderer: {fileID: 5755953393555610551}
   _moveEffectController: {fileID: 8851834567220410780}

@@ -32,7 +32,7 @@ public class GameOver : MonoBehaviour
    {
       if (!_isActive) return;
 
-      if(Input.anyKeyDown && _enteredTime + 1.5f < Time.time) // 1ÃÊÀÌ»ó Áö³ª°£ »óÈ²¿¡¼­ ¾Æ¹« Å°°¡ ´­¸®¸é
+      if(Input.anyKeyDown && _enteredTime + 1.5f < Time.time) // 1ï¿½ï¿½ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
       {
          ShutDownGameOverScene();
          _isActive = true;
@@ -69,5 +69,9 @@ public class GameOver : MonoBehaviour
             return "GB";
         }
         return "MB";
+    }
+
+    private void OnDestroy() {
+        ScoreManager.Instance.ResetSocre();
     }
 }

@@ -11,9 +11,9 @@ namespace LJS
     public class MessageBullet : Bullet
     {
         private Rigidbody2D rbCompo;
-        public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir = default, float fontSize = 0.2F)
+        public override void SetBullet(BulletInfo info, Enemy owner, Vector3 pos, bool RotateToTarget, Vector3 dir = default, float fontSize = 0.2F)
         {
-            base.SetBullet(info, owner, RotateToTarget, dir, 1);
+            base.SetBullet(info, owner, pos, RotateToTarget, dir, 1);
         }
 
         public override void Update() {
@@ -25,9 +25,8 @@ namespace LJS
             rbCompo = GetComponent<Rigidbody2D>();
         }
 
-        public override void OnTriggerEnter2D(Collider2D other)
-        {
-            if (_destroyNow) return;
+        public override void OnTriggerStay2D(Collider2D other) {
+                        if (_destroyNow) return;
             if(other.TryGetComponent(out Player player)){
                 if (player.Movement.IsDash) return;
 

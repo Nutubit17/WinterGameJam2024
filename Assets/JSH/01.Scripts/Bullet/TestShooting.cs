@@ -13,7 +13,7 @@ public class TestShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Bullet obj2 = Instantiate(obj, transform.position, Quaternion.identity);
-            obj2.SetBullet(_info, null, true);
+            // obj2.SetBullet(_info, null, true);
         }
     }
 }

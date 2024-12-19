@@ -9,9 +9,13 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     public int CurrentScore { get; private set; } = 0;
     public float CurrentTime { get; private set; } = 0;
 
-    void Update()
+    private void Update()
     {
         CurrentTime += Time.deltaTime;
+    }
+
+    public void ResetSocre(){
+        CurrentScore = 0;
     }
 
     public void AddScore(int score)

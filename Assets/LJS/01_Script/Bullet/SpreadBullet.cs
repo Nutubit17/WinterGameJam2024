@@ -28,16 +28,20 @@ namespace LJS.Bullets
             }
         }
 
-        public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir, float fontSize)
+        public override void SetBullet(BulletInfo info, Enemy owner, Vector3 pos, bool RotateToTarget, Vector3 dir, float fontSize)
         {
             _textField.color = _specialColor;
-            base.SetBullet(info, owner, RotateToTarget, dir);
+            base.SetBullet(info, owner, pos, RotateToTarget, dir);
         }
 
         public override void ResetItem()
         {
             base.ResetItem();
             _spread = false;
+        }
+
+        public override void OnTriggerStay2D(Collider2D other) {
+            base.OnTriggerStay2D(other);
         }
 
         private void SpreadNow(){
@@ -64,7 +68,7 @@ namespace LJS.Bullets
                 info.attackType = _info.attackType;
 
                 info.text = text[i].ToString();
-                bullet.SetBullet(info, _owner, false, bullet.transform.right);
+                bullet.SetBullet(info, _owner, transform.position, false, bullet.transform.right);
                 currentAngle += 105f / _text.Length;
             }
             PoolManager.Instance.Push(this);

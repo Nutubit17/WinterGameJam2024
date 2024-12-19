@@ -21,6 +21,9 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     private float minwidth;
     private float maxwidth;
 
+    [SerializeField] private GameObject _healingItemPrefab;
+    [SerializeField] private float _spawnHealTime;
+
     [SerializeField] private float durationTime;  // ���� �پ��� �����縹�� ������.
     private float lastSpawnTime;
 
@@ -76,6 +79,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         SpawnedBulletList = new();
     }
 
+    float _lastHealItemTime = 0f;
     private void Update()
     {
         if (CurrentSpawnCount != 0 && CurrentSpawnCount % 10 == 0)
@@ -84,6 +88,19 @@ public class SpawnManager : MonoSingleton<SpawnManager>
                 durationTime -= 0.2f;
         }
         SpawnEnemyFunc();
+        
+        if(Time.time - _lastHealItemTime > _spawnHealTime){
+            SpawnHealingItem();
+            _lastHealItemTime = Time.time;
+        }
+    }
+
+    private void SpawnHealingItem(){
+        float randomWidth = Random.Range(minwidth + 5, maxwidth - 5);
+        float randomHeight = Random.Range(minheight + 5, maxheight - 5);
+
+        Vector3 point = new Vector3(randomWidth, randomHeight);
+        Instantiate(_healingItemPrefab, point, Quaternion.identity);
     }
 
     private void SpawnEnemyFunc()

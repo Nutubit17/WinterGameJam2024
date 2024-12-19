@@ -74,7 +74,7 @@ namespace LJS.Enemys
                 break;
                 case BulletType.Message:
                 {
-                    if(Vector3.Distance(_attackTrm.position, lookTarget.position) < 5f)
+                    if(Vector3.Distance(_attackTrm.position, lookTarget.position) < 9f)
                     {
                         bullet = PoolManager.Instance.Pop(_NormalbulletName.poolName);
                         break;
@@ -83,20 +83,19 @@ namespace LJS.Enemys
                     bullet = PoolManager.Instance.Pop(_MessagebulletName.poolName);
                     bulletCompo = bullet.GetGameObject().GetComponent<Bullet>();
                     bullet.GetGameObject().transform.position = _attackTrm.position;
-                    bulletCompo.SetBullet(_currentBulletInfo, _entity as Enemy, true, default);
+                    bulletCompo.SetBullet(_currentBulletInfo, _entity as Enemy, _attackTrm.position, true, default);
                     SpawnManager.Instance.AddSpawnedList(SpawnType.Bullet, bullet);
                     return;
                 }
                 case BulletType.Circle:
                 {
                     bullet = PoolManager.Instance.Pop(_CirclebulletName.poolName);
-                    bullet.GetGameObject().transform.position = _attackTrm.position;
                 }
                 break;
             }
 
             bulletCompo = bullet.GetGameObject().GetComponent<Bullet>();
-            bulletCompo.SetBullet(_currentBulletInfo, _entity as Enemy, true, default);
+            bulletCompo.SetBullet(_currentBulletInfo, _entity as Enemy, _attackTrm.position, true, default);
             bullet.GetGameObject().transform.position = _attackTrm.position;
             SpawnManager.Instance.AddSpawnedList(SpawnType.Bullet, bullet);
         }

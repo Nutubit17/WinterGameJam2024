@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65a022dce617aa4baed7a2d5db2a742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healingItemPrefab: {fileID: 2109677122761599183, guid: 95883e0bbee72814b81ee0511d76abd9, type: 3}
+  _spawnHealTime: 10
   durationTime: 4
   enemySpawnList:
   - {fileID: 11400000, guid: 479a5e31ca489794a8cef0e12002a9e7, type: 2}

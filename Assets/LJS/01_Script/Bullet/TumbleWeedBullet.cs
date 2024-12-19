@@ -14,7 +14,7 @@ namespace LJS.Bullets
         [SerializeField] private BulletInfo _bulletInfo;
         [SerializeField] private RectTransform _rotateCenter;
 
-        public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir = default, float fontSize = 0.2F)
+        public override void SetBullet(BulletInfo info, Enemy owner, Vector3 pos, bool RotateToTarget, Vector3 dir = default, float fontSize = 0.2F)
         {
             _info = _bulletInfo;
             _owner = owner;

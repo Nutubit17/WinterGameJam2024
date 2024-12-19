@@ -37,7 +37,7 @@ namespace LJS.Bullets
         public string ItemName => _item.poolName;
         #endregion
 
-        public virtual void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir = default, float fontSize = 0.2f){
+        public virtual void SetBullet(BulletInfo info, Enemy owner, Vector3 pos, bool RotateToTarget, Vector3 dir = default, float fontSize = 0.2f){
             _boxCollider = GetComponent<BoxCollider2D>();
 
             _info = info;
@@ -53,11 +53,10 @@ namespace LJS.Bullets
             if(RotateToTarget){
                 _target = _owner.GetCompo<EnemyAttack>().lookTarget;
 
-                Vector2 newPos = _target.position - transform.position;
+                Vector2 newPos = _target.position - pos;
                 float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, rotZ);
-                Debug.Log(_dir);
-                _dir = _target.position - owner.transform.position;
+                _dir = _target.position - pos;
             }
             else{
                 _dir = dir;
@@ -72,7 +71,17 @@ namespace LJS.Bullets
             transform.position += _dir.normalized * _speed * Time.deltaTime;
         }
 
-        public virtual void OnTriggerEnter2D(Collider2D other) {
+        // public virtual void OnTriggerEnter2D(Collider2D other) {
+        //     if(other.TryGetComponent<Player>(out Player playerCompo)){
+        //         if (playerCompo.Movement.IsDash)
+        //             return;
+
+        //         _destroyNow = true;
+        //         PoolManager.Instance.Push(this);
+        //     }
+        // }
+
+        public virtual void OnTriggerStay2D(Collider2D other) {
             if(other.TryGetComponent<Player>(out Player playerCompo)){
                 if (playerCompo.Movement.IsDash)
                     return;
