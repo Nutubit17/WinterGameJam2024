@@ -1,15 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using BehaviorDesigner.Runtime;
 using LJS.Entites;
+using LJS.pool;
 using UnityEngine;
 
 namespace LJS.Enemys
 {
-    public class Enemy : Entity
-    {   
+    public class Enemy : Entity, LJS.pool.IPoolable
+    {
+        [SerializeField] private PoolItemSO _item;
+        public string ItemName => _item.poolName;
+
+        public BehaviorTree behaviourTree;
+
+        protected override void Awake() {
+            base.Awake();
+            behaviourTree = GetComponent<BehaviorTree>();
+            behaviourTree.DisableBehavior();
+        }
+
+        public GameObject GetGameObject()
+        {
+            return gameObject;
+        }
+
+        public void ResetItem()
+        {
+            behaviourTree.EnableBehavior();
+        }
+
         private void OnTriggerEnter2D(Collider2D other) {
-            if(other.gameObject.CompareTag("Dummy")){
-                Destroy(gameObject);
+            if(other.TryGetComponent(out Phone phone)){
+                behaviourTree.DisableBehavior();
+                PoolManager.Instance.Push(this);
             }
         }
     }

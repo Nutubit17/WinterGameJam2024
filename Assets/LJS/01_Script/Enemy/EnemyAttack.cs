@@ -1,41 +1,45 @@
 using System;
 using System.Collections.Generic;
 using LJS.Bullets;
-using LJS.Enemys;
 using LJS.Entites;
-using TMPro;
+using LJS.pool;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace LJS.Enemys
 {
     public enum BulletType{
-        Normal, Spread, End
+        Normal = 0, Spread, Message, Circle,  End
     }
 
     public class EnemyAttack : EntityAttack
     {
         [Header("Spawn Setting")]
-        [SerializeField] private Bullet _NormalbulletPrefab; // todo : fix to Pooling
-        [SerializeField] private Bullet _SpreadbulletPrefab; // todo : fix to Pooling
+        [SerializeField] private PoolItemSO _NormalbulletName; // todo : fix to Pooling
+        [SerializeField] private PoolItemSO _SpreadbulletName; // todo : fix to Pooling
+        [SerializeField] private PoolItemSO _MessagebulletName; // todo : fix to Pooling
+        [SerializeField] private PoolItemSO _CirclebulletName; // todo : fix to Pooling
         [SerializeField] private Transform _attackTrm;
 
         [Header("Attack Setting")]
         public Transform lookTarget;
-        [SerializeField] private int _attackProbability; // todo : fix to Stat
         [SerializeField] private float _attackCoolTime; // todo : fix to Stat
+        [SerializeField] private float _attackProbability; // todo : fix to Stat
+        [SerializeField] private BulletType _bulletType;
 
         [Header("Bullet Setting")]
         [SerializeField] private List<BulletInfo> _damageTextList;
         [SerializeField] private List<BulletInfo> _healingTextList;
 
-        #region Event
-        public event Action<Bullet> OnAttack;
-        #endregion
         private float _lastAttackTime = 0f;
         private AttackType _currentAttackType;
-        private BulletType _currentBulletType;
         private BulletInfo _currentBulletInfo;
+
+        public override void Initialize(Entity entity)
+        {
+            base.Initialize(entity);
+            lookTarget = FindObjectOfType<Player>().transform;
+        }
 
         private void Update(){
             if(_lastAttackTime <= 0){
@@ -53,42 +57,42 @@ namespace LJS.Enemys
         public override void ExcuteAttack()
         {
             CanAttack = false;
-            RandomSelectingBullet();
             RandomSelectAttackType();
-            
-            Bullet bullet = null;
-            switch(_currentBulletType){
+
+            LJS.pool.IPoolable bullet = null;
+            Bullet bulletCompo = null;
+            switch (_bulletType){
                 case BulletType.Normal:
                 {
-                    bullet = Instantiate(_NormalbulletPrefab, _attackTrm.position, Quaternion.identity);
+                    bullet = PoolManager.Instance.Pop(_NormalbulletName.poolName);
                 }
                 break;
                 case BulletType.Spread:
                 {
-                    bullet = Instantiate(_SpreadbulletPrefab, _attackTrm.position, Quaternion.identity);
+                    bullet = PoolManager.Instance.Pop(_SpreadbulletName.poolName);
+                }
+                break;
+                case BulletType.Message:
+                {
+                    bullet = PoolManager.Instance.Pop(_MessagebulletName.poolName);
+                    bulletCompo = bullet.GetGameObject().GetComponent<Bullet>();
+                    bullet.GetGameObject().transform.position = _attackTrm.position;
+                    bulletCompo.SetBullet(_currentBulletInfo, _entity as Enemy, true, default);
+                    SpawnManager.Instance.AddSpawnedList(SpawnType.Bullet, bullet);
+                    return;
+                }
+                case BulletType.Circle:
+                {
+                    bullet = PoolManager.Instance.Pop(_CirclebulletName.poolName);
+                    bullet.GetGameObject().transform.position = _attackTrm.position;
                 }
                 break;
             }
 
-            bullet.SetBullet(_currentBulletInfo, _entity as Enemy, true, default);
-            OnAttack?.Invoke(bullet);
-        }
-
-        private void RandomSelectingBullet()
-        {
-            int randNum = Random.Range(0, (int)BulletType.End);
-            switch(randNum){
-                case (int)BulletType.Normal:
-                {
-                    _currentBulletType = BulletType.Normal;
-                }
-                break;
-                case (int)BulletType.Spread:
-                {
-                    _currentBulletType = BulletType.Spread;
-                }
-                break;
-            }
+            bulletCompo = bullet.GetGameObject().GetComponent<Bullet>();
+            bulletCompo.SetBullet(_currentBulletInfo, _entity as Enemy, true, default);
+            bullet.GetGameObject().transform.position = _attackTrm.position;
+            SpawnManager.Instance.AddSpawnedList(SpawnType.Bullet, bullet);
         }
 
         public void RandomSelectAttackType(){

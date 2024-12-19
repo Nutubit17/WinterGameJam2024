@@ -9,11 +9,11 @@ namespace LJS.Entites
 {
     public class Entity : MonoBehaviour
     {
-        protected Dictionary<Type, IEntityComponent> _components;
+        protected Dictionary<Type, IEntityComponents> _components;
 
         protected virtual void Awake()
         {
-            _components = new Dictionary<Type, IEntityComponent>();
+            _components = new Dictionary<Type, IEntityComponents>();
             AddComponentToDictionary();
             ComponentInitialize();
             AfterInitialize();
@@ -21,7 +21,7 @@ namespace LJS.Entites
 
         private void AddComponentToDictionary()
         {
-            GetComponentsInChildren<IEntityComponent>(true)
+            GetComponentsInChildren<IEntityComponents>(true)
                 .ToList().ForEach(component => _components.Add(component.GetType(), component));
         }
         
@@ -36,9 +36,9 @@ namespace LJS.Entites
                 .ToList().ForEach(afterInitCompo => afterInitCompo.AfterInit());
         }
 
-        public T GetCompo<T>(bool isDerived = false) where T : IEntityComponent
+        public T GetCompo<T>(bool isDerived = false) where T : IEntityComponents
         {
-            if (_components.TryGetValue(typeof(T), out IEntityComponent component))
+            if (_components.TryGetValue(typeof(T), out IEntityComponents component))
             {
                 return (T)component;
             }

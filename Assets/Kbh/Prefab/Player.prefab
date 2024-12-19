@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.89, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2179500314569461670}
   - {fileID: 4339112538574131627}
@@ -66,10 +66,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.002970904}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -80,7 +80,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.73261267}
   m_EdgeRadius: 0
 --- !u!50 &6573338448406236514
 Rigidbody2D:
@@ -147,17 +147,10 @@ MonoBehaviour:
     _checkingTagName: 
     _checkingLayer:
       serializedVersion: 2
-      m_Bits: 32
+      m_Bits: 268435456
     _isNoDamageTime: 0
     _noDamageTime: 1.5
     _lastLaunchedNoDamageTime: 0
-  <WallDetector>k__BackingField:
-    _targetCollider: {fileID: 1038213267712425499}
-    _collisionCheckWay: 0
-    _checkingTagName: 
-    _checkingLayer:
-      serializedVersion: 2
-      m_Bits: 0
   <VisualComponent>k__BackingField:
     _renderer: {fileID: 5755953393555610551}
   _moveEffectController: {fileID: 8851834567220410780}
@@ -191,7 +184,6 @@ MonoBehaviour:
   - {r: 0, g: 0.9411765, b: 1, a: 0.6}
   - {r: 0.95686275, g: 0.8352941, b: 0.99215686, a: 0.6}
   - {r: 0.46666667, g: 0.13333334, b: 0.5372549, a: 0.6}
-  material: {fileID: 0}
 --- !u!1 &2076771029633067814
 GameObject:
   m_ObjectHideFlags: 0
