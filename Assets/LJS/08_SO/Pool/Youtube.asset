@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8571c911b62048468857db2184297ae, type: 3}
   m_Name: Youtube
   m_EditorClassIdentifier: 
+  poolName: Youtube
   prefab: {fileID: 927890524632192042, guid: 165eec495b5439844a59f6af5e963a1b, type: 3}
   count: 7

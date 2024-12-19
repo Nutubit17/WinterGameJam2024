@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8571c911b62048468857db2184297ae, type: 3}
   m_Name: MessageBullet
   m_EditorClassIdentifier: 
+  poolName: Message
   prefab: {fileID: 4472744052902307763, guid: fef4a40d026f2f14eb9bcd4b35df5c06, type: 3}
   count: 7

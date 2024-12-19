@@ -33,8 +33,8 @@ namespace LJS.Bullets
 
         [SerializeField] protected TextMeshPro _textField;
 
-        [SerializeField] private string _name;
-        public string ItemName => _name;
+        [SerializeField] private PoolItemSO _item;
+        public string ItemName => _item.poolName;
         #endregion
 
         public virtual void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir = default, float fontSize = 0.2f){

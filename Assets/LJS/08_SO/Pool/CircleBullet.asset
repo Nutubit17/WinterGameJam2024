@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8571c911b62048468857db2184297ae, type: 3}
   m_Name: CircleBullet
   m_EditorClassIdentifier: 
+  poolName: Circle
   prefab: {fileID: 8845130217866125037, guid: 2437a9d350b118e40971788dc4d0c624, type: 3}
   count: 7
