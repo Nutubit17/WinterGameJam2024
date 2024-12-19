@@ -46,6 +46,8 @@ namespace LJS.Bullets
             for(int i = 0; i < _text.Length; ++i){
                 Bullet bullet = Instantiate(_spreadBullet, transform.position, Quaternion.Euler(0, 0, currentAngle + transform.rotation.eulerAngles.z));
                 bullet.DeleteLater(3.5f);
+
+                SpawnManager.Instance.AddSpawnedList(SpawnType.Bullet, bullet);
                 
                 string text = _info.text;
                 BulletInfo info = new BulletInfo();
@@ -57,7 +59,7 @@ namespace LJS.Bullets
                 bullet.SetBullet(info, _owner, false, bullet.transform.right);
                 currentAngle += 105f / _text.Length;
             }
-            Destroy(gameObject);
+            PoolManager.Instance.Push(this);
         }
     }
 }

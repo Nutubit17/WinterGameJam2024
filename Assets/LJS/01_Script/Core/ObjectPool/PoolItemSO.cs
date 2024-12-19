@@ -4,6 +4,7 @@ namespace LJS.pool{
     [CreateAssetMenu(menuName = "SO/Pool/Item")]
     public class PoolItemSO : ScriptableObject
     {
+        public string poolName;
         public GameObject prefab;
         public int count;
 

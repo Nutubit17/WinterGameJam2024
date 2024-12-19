@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2864098018686539638}
   - component: {fileID: 6511064201602691900}
   - component: {fileID: -4537142266105231889}
+  - component: {fileID: 2674969004953388506}
+  - component: {fileID: 5165606479469059591}
   m_Layer: 31
   m_Name: Messenger
   m_TagString: Untagged
@@ -99,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a610401c5883594fa302dcd4b3d7366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Messenager
+  _item: {fileID: 11400000, guid: 3943ab75649fe2648aeff927fe81b620, type: 2}
   behaviourTree: {fileID: -4537142266105231889}
 --- !u!114 &6511064201602691900
 MonoBehaviour:
@@ -113,11 +115,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6594c1220e33a4991f9d9ff36faafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NormalbulletPrefab: {fileID: 5853644643890728400, guid: 072ebd7a7dbe7434880fdc57c1ed5569, type: 3}
-  _SpreadbulletPrefab: {fileID: 8112125701755170447, guid: 48d666b8eb3ac17438461d53b444b934, type: 3}
-  _MessagebulletPrefab: {fileID: 2392675075231876057, guid: fef4a40d026f2f14eb9bcd4b35df5c06, type: 3}
-  _CirclebulletPrefab: {fileID: 8557559210021918975, guid: 2437a9d350b118e40971788dc4d0c624, type: 3}
-  _attackTrm: {fileID: 0}
+  _NormalbulletName: {fileID: 11400000, guid: 4b71cbd362b96a048a843a8904f439cb, type: 2}
+  _SpreadbulletName: {fileID: 11400000, guid: ffbeab50ce012db48b9e42db9af8d138, type: 2}
+  _MessagebulletName: {fileID: 11400000, guid: 70dbc21f26e241840a149d00ad5529b1, type: 2}
+  _CirclebulletName: {fileID: 11400000, guid: d2b028b2dd0c98048934974f22e73889, type: 2}
+  _attackTrm: {fileID: 5045828306495768889}
   lookTarget: {fileID: 0}
   _attackCoolTime: 2
   _attackProbability: 80
@@ -176,3 +178,44 @@ MonoBehaviour:
       Version: 1.7.7
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &2674969004953388506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535837112682512013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5afaf43f1d09a9449d61ac6bfde54b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanMove: 0
+  _moveSpeed: 1
+--- !u!50 &5165606479469059591
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535837112682512013}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

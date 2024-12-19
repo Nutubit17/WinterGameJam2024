@@ -9,15 +9,15 @@ namespace LJS.Enemys
 {
     public class Enemy : Entity, LJS.pool.IPoolable
     {
-        [SerializeField] private string _name;
-        public string ItemName => _name;
+        [SerializeField] private PoolItemSO _item;
+        public string ItemName => _item.poolName;
 
         public BehaviorTree behaviourTree;
 
         protected override void Awake() {
             base.Awake();
             behaviourTree = GetComponent<BehaviorTree>();
-            behaviourTree.enabled = true;
+            behaviourTree.DisableBehavior();
         }
 
         public GameObject GetGameObject()
@@ -27,12 +27,12 @@ namespace LJS.Enemys
 
         public void ResetItem()
         {
-            behaviourTree.enabled = true;
+            behaviourTree.EnableBehavior();
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
             if(other.TryGetComponent(out Phone phone)){
-                behaviourTree.enabled = false;
+                behaviourTree.DisableBehavior();
                 PoolManager.Instance.Push(this);
             }
         }

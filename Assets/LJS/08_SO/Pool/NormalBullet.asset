@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8571c911b62048468857db2184297ae, type: 3}
-  m_Name: ExplosionEffect
+  m_Name: NormalBullet
   m_EditorClassIdentifier: 
-  poolName: ExplosionEffect
-  prefab: {fileID: 7818411678841977830, guid: 3122d5c870d525d4ba81accb627d0208, type: 3}
+  poolName: Normal
+  prefab: {fileID: 2618484612982441069, guid: 072ebd7a7dbe7434880fdc57c1ed5569, type: 3}
   count: 7

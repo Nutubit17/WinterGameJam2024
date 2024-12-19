@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8571c911b62048468857db2184297ae, type: 3}
   m_Name: Messenger
   m_EditorClassIdentifier: 
+  poolName: Messenger
   prefab: {fileID: 7535837112682512013, guid: 80289c4c9585dfd4289d7fbd204a0a5d, type: 3}
   count: 7

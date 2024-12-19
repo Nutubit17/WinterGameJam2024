@@ -4901,4 +4901,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39e4492146c94f4cbde751f8ff1eba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: SpreadEffect
+  _item: {fileID: 11400000, guid: 99419a7f92e661548a273d90483fb22a, type: 2}

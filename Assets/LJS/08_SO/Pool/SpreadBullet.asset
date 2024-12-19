@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8571c911b62048468857db2184297ae, type: 3}
   m_Name: SpreadBullet
   m_EditorClassIdentifier: 
+  poolName: Spread
   prefab: {fileID: 4976555881169355540, guid: 48d666b8eb3ac17438461d53b444b934, type: 3}
   count: 7
