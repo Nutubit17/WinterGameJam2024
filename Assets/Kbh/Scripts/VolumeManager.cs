@@ -11,20 +11,38 @@ public class VolumeManager : MonoSingleton<VolumeManager>
    private VolumeProfile _profile;
    
    private Bloom _bloom;
+   private float _bloomStartIntensity;
+
    private LensDistortion _lensDistortion;
+   private float _lensStartIntensity;
+
    private FilmGrain _filmGain;
+   private float _filmStartIntensity;
+
    private DepthOfField _depthOfField;
 
    protected override void Awake()
    {
       base.Awake();
+
       _volume = transform.Find("Global Volume").GetComponent<Volume>();
-      _profile = _volume.sharedProfile;
+      _profile = _volume.profile;
 
       _profile.TryGet(out _bloom);
       _profile.TryGet(out _lensDistortion);
       _profile.TryGet(out _filmGain);
       _profile.TryGet(out _depthOfField);
+
+      _bloomStartIntensity = _bloom.intensity.value;
+      _lensStartIntensity = _lensDistortion.intensity.value;
+      _filmStartIntensity = _filmGain.intensity.value;
+   }
+
+   private void OnDestroy()
+   {
+      _bloom.intensity.value = _bloomStartIntensity;
+      _lensDistortion.intensity.value = _lensStartIntensity;
+      _filmGain.intensity.value = _filmStartIntensity;
    }
 
    public Tween DOBloomIntensity(float intensity, float time)
@@ -37,7 +55,7 @@ public class VolumeManager : MonoSingleton<VolumeManager>
       return DOTween.To(() => _filmGain.intensity.GetValue<float>(), x => _filmGain.intensity.value = x, intensity, time);
    }
 
-   public Tween LensDistortion(float intensity, float time)
+   public Tween DOLensDistortion(float intensity, float time)
    {
       return DOTween.To(() => _lensDistortion.intensity.GetValue<float>(), x => _lensDistortion.intensity.value = x, intensity, time);
    }

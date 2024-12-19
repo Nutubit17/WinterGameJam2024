@@ -54,15 +54,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BlankCnt: 9.03
+    - _BlankCnt: 8.23
     - _Bolock: 0
-    - _ErasePower: 4.92
+    - _ErasePower: 4.39
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed: 0.1
     - _Thickness: 0.1
     m_Colors:
-    - _Color: {r: 1.5260382, g: 4.0779853, b: 4.055566, a: 0}
+    - _Color: {r: 3.3043242, g: 5.4444313, b: 5.4264474, a: 0}
     - _MoveDirection: {r: -1, g: -1, b: 0, a: 0}
     - _MoveDirection2: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

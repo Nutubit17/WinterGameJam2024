@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Kbh/Scenes/Game.unity
     guid: e4dba5b842b52cf43b89f3ef1df7bf03
-  - enabled: 1
-    path: Assets/Kbh/Scenes/GameOver.unity
-    guid: 576cb151e3831d742b123f59ed7a3f3f
   m_configObjects: {}

@@ -29,7 +29,6 @@ public class SoundManager : MonoBehaviour
                 {
                     GameObject soundManager = new GameObject("SoundManager");
                     instance = soundManager.AddComponent<SoundManager>();
-                    DontDestroyOnLoad(soundManager);
                 }
             }
             return instance;
@@ -39,10 +38,10 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+      if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
             Init();
         }
         else if (instance != null)
@@ -75,17 +74,17 @@ public class SoundManager : MonoBehaviour
             _audioSources[(int)SoundType.BGM].loop = true; // 배경음은 무한 반복 재생
         }
 
+        for (int i = 0; i < audioClips.Count; i++)
+        {
+            AudioClips.Add(str[i], audioClips[i]);
+
+        }
 
     }
 
     private void Start()
     {
        
-        for (int i = 0; i < audioClips.Count; i++)
-        {
-            AudioClips.Add(str[i], audioClips[i]);
-
-        }
        //Play(_audioClips["TitleBGM"], SoundType.BGM, 1f); 
     }
 
