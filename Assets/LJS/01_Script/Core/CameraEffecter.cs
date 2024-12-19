@@ -7,7 +7,7 @@ public class CameraEffecter : MonoSingleton<CameraEffecter>
 {
     public CinemachineVirtualCamera currnetCam { get; private set; }
 
-    private void Awake() {
+    protected override void Awake() {
         currnetCam = FindObjectOfType<CinemachineVirtualCamera>();
     }
 

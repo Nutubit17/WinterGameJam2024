@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4aaf995a9c2f24e864429f3024ea28, type: 3}
   m_Name: MessageInfo_1_Healing
   m_EditorClassIdentifier: 
-  text: "\uD0DD\uBCA0\uC654\uC2B5\uB2C8\uB2E4"
+  text: "\uD0DD\uBC30\uC654\uC2B5\uB2C8\uB2E4"
   attackType: 1
   speed: 7

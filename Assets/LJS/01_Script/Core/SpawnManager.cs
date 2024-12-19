@@ -21,7 +21,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     private float minwidth;
     private float maxwidth;
 
-    [SerializeField] private float durationTime;  // Á¡Â÷ ÁÙ¾îµé°í »ý¼º¾ç¸¹¾Æ Á®¾ßÇÔ.
+    [SerializeField] private float durationTime;  // ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ç¸¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
     private float lastSpawnTime;
 
     public int CurrentSpawnCount { get; private set; }
@@ -56,8 +56,14 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         }
     }
 
+    protected override void Awake()
+    {
+        
+    }
+
     private void Start()
     {
+        durationTime = 4f;
         #region SetPos
         spawnPos = transform.Find("Point");
         maxheight = spawnPos.position.y;

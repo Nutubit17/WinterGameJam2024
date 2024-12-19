@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4aaf995a9c2f24e864429f3024ea28, type: 3}
   m_Name: MessageInfo_2_Damage
   m_EditorClassIdentifier: 
-  text: "\uC2A4\uD3A8\uBB38\uC790"
+  text: "\uC2A4\uD338\uBB38\uC790"
   attackType: 0
   speed: 7

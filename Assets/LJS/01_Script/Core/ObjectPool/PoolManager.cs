@@ -8,8 +8,9 @@ namespace LJS.pool{
 
         private Dictionary<string, LJS.pool.Pool> _pools;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _pools = new Dictionary<string, LJS.pool.Pool>();
 
             foreach (PoolItemSO item in _poolList.list)

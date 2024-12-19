@@ -6,15 +6,16 @@ using UnityEngine;
 
 public class ScoreText : MonoBehaviour
 {
-    private TextMeshProUGUI text;
+    private TextMeshPro text;
 
     private void Awake()
     {
-        text = GetComponent<TextMeshProUGUI>();
+        text = GetComponent<TextMeshPro>();
     }
 
     private void Start()
     {
+        text.text = "0GB";
         ScoreManager.Instance.OnScoreChange += HandleScoreChange;
     }
 
