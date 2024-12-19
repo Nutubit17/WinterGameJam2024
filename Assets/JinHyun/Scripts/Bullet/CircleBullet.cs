@@ -32,6 +32,12 @@ namespace LJS.Bullets
             base.SetBullet(info, owner, RotateToTarget, dir, fontSize);
         }
 
+        public override void ResetItem()
+        {
+            base.ResetItem();
+            _circle = false;
+        }
+
         private void CircleNow(){
             _circle = true;
             if(_text.Length == 1) return;

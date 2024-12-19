@@ -34,6 +34,12 @@ namespace LJS.Bullets
             base.SetBullet(info, owner, RotateToTarget, dir);
         }
 
+        public override void ResetItem()
+        {
+            base.ResetItem();
+            _spread = false;
+        }
+
         private void SpreadNow(){
             _spread = true;
             float currentAngle = -35f;

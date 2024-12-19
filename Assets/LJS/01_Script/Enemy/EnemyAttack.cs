@@ -35,8 +35,10 @@ namespace LJS.Enemys
         private AttackType _currentAttackType;
         private BulletInfo _currentBulletInfo;
 
-        private void Awake() {
-            lookTarget = Phone.Instance.transform;
+        public override void Initialize(Entity entity)
+        {
+            base.Initialize(entity);
+            lookTarget = FindObjectOfType<Player>().transform;
         }
 
         private void Update(){
@@ -55,7 +57,8 @@ namespace LJS.Enemys
         public override void ExcuteAttack()
         {
             CanAttack = false;
-            
+            RandomSelectAttackType();
+
             LJS.pool.IPoolable bullet = null;
             Bullet bulletCompo = null;
             switch (_bulletType){
@@ -73,6 +76,7 @@ namespace LJS.Enemys
                 {
                     bullet = PoolManager.Instance.Pop(_MessagebulletName.poolName);
                     bulletCompo = bullet.GetGameObject().GetComponent<Bullet>();
+                    bullet.GetGameObject().transform.position = _attackTrm.position;
                     bulletCompo.SetBullet(_currentBulletInfo, _entity as Enemy, true, default);
                     SpawnManager.Instance.AddSpawnedList(SpawnType.Bullet, bullet);
                     return;
@@ -86,8 +90,8 @@ namespace LJS.Enemys
             }
 
             bulletCompo = bullet.GetGameObject().GetComponent<Bullet>();
-            Debug.Log(_currentBulletInfo);
             bulletCompo.SetBullet(_currentBulletInfo, _entity as Enemy, true, default);
+            bullet.GetGameObject().transform.position = _attackTrm.position;
             SpawnManager.Instance.AddSpawnedList(SpawnType.Bullet, bullet);
         }
 

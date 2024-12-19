@@ -13,7 +13,7 @@ namespace LJS
         private Rigidbody2D rbCompo;
         public override void SetBullet(BulletInfo info, Enemy owner, bool RotateToTarget, Vector3 dir = default, float fontSize = 0.2F)
         {
-            base.SetBullet(info, owner, RotateToTarget, dir, fontSize);
+            base.SetBullet(info, owner, RotateToTarget, dir, 1);
             rbCompo = GetComponent<Rigidbody2D>();
         }
 
