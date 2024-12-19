@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8571c911b62048468857db2184297ae, type: 3}
+  m_Name: MessageBullet
+  m_EditorClassIdentifier: 
+  poolName: Message
+  prefab: {fileID: 4472744052902307763, guid: fef4a40d026f2f14eb9bcd4b35df5c06, type: 3}
+  count: 7

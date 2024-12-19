@@ -72,7 +72,7 @@ public class SoundManager : MonoBehaviour
                 go.transform.parent = root.transform;
             }
 
-            _audioSources[(int)SoundType.BGM].loop = true; // ¹è°æÀ½Àº ¹«ÇÑ ¹Ýº¹ Àç»ý
+            _audioSources[(int)SoundType.BGM].loop = true; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½ ï¿½ï¿½ï¿½
         }
 
 
@@ -101,7 +101,7 @@ public class SoundManager : MonoBehaviour
                 audioSource.Stop();
             }
             audioSource.volume = volume;
-            audioSource.PlayOneShot(clip); // ÇÑ ¹ø¸¸ Àç»ý
+            audioSource.PlayOneShot(clip); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         }
         else // Sound.Bgm
         {
