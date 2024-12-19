@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -26,11 +27,21 @@ public class SettingUI : MonoBehaviour, InputControls.IUIActions
         _inputControls.UI.SetCallbacks(this);
 
         settingUI.alpha = 0;
-        settingUI.interactable = false; 
+        settingUI.interactable = false;
         settingUI.blocksRaycasts = false;
 
         SFXslider.onValueChanged.AddListener(HandleSfxValueChange);
         BGMslider.onValueChanged.AddListener(HandleBGMValueChange);
+    }
+
+    private void OnDestroy()
+    {
+        _inputControls.UI.Disable();
+        settingUI.alpha = 0;
+        settingUI.interactable = false;
+        settingUI.blocksRaycasts = false;
+        VolumeManager.Instance.ResetDepthOfField();
+        Time.timeScale = 1;
     }
 
     private void HandleBGMValueChange(float value)

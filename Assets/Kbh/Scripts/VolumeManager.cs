@@ -23,6 +23,7 @@ public class VolumeManager : MonoSingleton<VolumeManager>
    private float _chromaticIntensity;
 
    private DepthOfField _depthOfField;
+    private float _depthOfFieldIntensity;
 
    protected override void Awake()
    {
@@ -41,6 +42,7 @@ public class VolumeManager : MonoSingleton<VolumeManager>
       _lensStartIntensity = _lensDistortion.intensity.value;
       _filmStartIntensity = _filmGain.intensity.value;
       _chromaticIntensity = _chromatic.intensity.value;
+        _depthOfFieldIntensity = _depthOfField.gaussianStart.value;
    }
 
    private void OnDestroy()
@@ -49,7 +51,8 @@ public class VolumeManager : MonoSingleton<VolumeManager>
       _lensDistortion.intensity.value = _lensStartIntensity;
       _filmGain.intensity.value = _filmStartIntensity;
       _chromatic.intensity.value = _chromaticIntensity;
-   }
+       _depthOfField.gaussianStart.value = _depthOfFieldIntensity;
+    }
 
    public Tween DOBloomIntensity(float intensity, float time)
    {
@@ -75,5 +78,10 @@ public class VolumeManager : MonoSingleton<VolumeManager>
    {
       return DOTween.To(() => _depthOfField.gaussianStart.GetValue<float>(), x => _depthOfField.gaussianStart.value = x, gain ? 0 : 1000, time);
    }
+
+    public void ResetDepthOfField()
+    {
+        _depthOfField.gaussianStart.value = _depthOfFieldIntensity;
+    }
 
 }
