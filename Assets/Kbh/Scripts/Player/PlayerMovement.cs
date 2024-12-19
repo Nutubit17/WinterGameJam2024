@@ -26,10 +26,16 @@ public class PlayerMovement : EntityMovement, IEntityComponent
    [SerializeField] private float _scaleCycle = 0.5f;
    [SerializeField] private float _scaleAmount = 0.1f;
 
+   [SerializeField] private Vector2 _leftDownPosition, _rightUpPosition;
+   
+
    public void Init(IEntity entity)
    {
       _owner = entity;
       _visualStartPosition = _visual.localPosition;
+
+      _leftDownPosition = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+      _rightUpPosition = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
    }
 
    public override void Move(Vector2 direction)
@@ -71,6 +77,11 @@ public class PlayerMovement : EntityMovement, IEntityComponent
          if (_owner.Status.CurrentStamina <= 0)
             SetDash(false);
       }
+
+      _rigidbody2D.position = new Vector2(
+         Mathf.Clamp(_rigidbody2D.position.x, _leftDownPosition.x, _rightUpPosition.x),
+         Mathf.Clamp(_rigidbody2D.position.y, _leftDownPosition.y, _rightUpPosition.y));
+
    }
 
    private void IdleAnimation()
