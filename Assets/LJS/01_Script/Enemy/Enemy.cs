@@ -12,9 +12,12 @@ namespace LJS.Enemys
         [SerializeField] private PoolItemSO _item;
         public string ItemName => _item.poolName;
 
+        public int dataScore;
+
         public BehaviorTree behaviourTree;
 
-        protected override void Awake() {
+        protected override void Awake()
+        {
             base.Awake();
             behaviourTree = GetComponent<BehaviorTree>();
             behaviourTree.DisableBehavior();
@@ -30,9 +33,12 @@ namespace LJS.Enemys
             behaviourTree.EnableBehavior();
         }
 
-        private void OnTriggerEnter2D(Collider2D other) {
-            if(other.TryGetComponent(out Phone phone)){
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.TryGetComponent(out Phone phone))
+            {
                 behaviourTree.DisableBehavior();
+                ScoreManager.Instance.AddScore(dataScore);
                 PoolManager.Instance.Push(this);
             }
         }

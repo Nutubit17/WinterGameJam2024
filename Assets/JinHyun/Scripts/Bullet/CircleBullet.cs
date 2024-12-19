@@ -40,11 +40,12 @@ namespace LJS.Bullets
 
         private void CircleNow(){
             _circle = true;
+            _currentTime = 0;
             if(_text.Length == 1) return;
 
             LJS.pool.IPoolable pool = PoolManager.Instance.Pop("ExplosionEffect");
             pool.GetGameObject().transform.position = transform.position;
-            SoundManagerHelper.PlayEffect(SoundManager.Instance, "ExplosionEffect", 1);
+            SoundManager.Instance.PlayEffect(CONST.EXPLOSION_SFX, 1);
 
             float angle = 360f /  _text.Length;
             for(int i = 0; i < _text.Length; ++i){
@@ -58,6 +59,7 @@ namespace LJS.Bullets
                 info.text = text[i].ToString();
 
                 Bullet bullet = Instantiate(_spreadBullet, transform.position, Quaternion.Euler(0, 0, angle + transform.rotation.eulerAngles.z));
+                bullet.gameObject.layer = 28;
                 bullet.DeleteLater(3.5f);
                 bullet.SetBullet(info, _owner, false, new Vector3(x, y, 0));
 

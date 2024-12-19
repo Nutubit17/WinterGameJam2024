@@ -52,7 +52,7 @@ MonoBehaviour:
   - GetOutSandiSFX
   - PlayerHitSFX
   - PlayerFlipSFX
-  - ExplosionEffect
+  - ExplosionSFX
   audioClips:
   - {fileID: 8300000, guid: 559c232a43caebe41870ce54786f604e, type: 3}
   - {fileID: 8300000, guid: 51a4f1157b7ff1449b5e5cf064d584c7, type: 3}

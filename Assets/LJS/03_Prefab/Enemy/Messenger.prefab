@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item: {fileID: 11400000, guid: 3943ab75649fe2648aeff927fe81b620, type: 2}
+  dataScore: 200
   behaviourTree: {fileID: -4537142266105231889}
 --- !u!114 &6511064201602691900
 MonoBehaviour:

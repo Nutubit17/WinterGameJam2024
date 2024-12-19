@@ -14,7 +14,7 @@ namespace LJS.Bullets
         [SerializeField] private float _whenSpread;
         
         private bool _spread;
-        private float _currentTime;
+        private float _currentTime = 0;
         public override void Update(){
             base.Update();
 
@@ -41,16 +41,18 @@ namespace LJS.Bullets
         }
 
         private void SpreadNow(){
-            _spread = true;
+            _spread = true; 
+            _currentTime = 0;
             float currentAngle = -35f;
             if(_text.Length == 1) return;
 
             LJS.pool.IPoolable obj = PoolManager.Instance.Pop("SpreadEffect");
             obj.GetGameObject().transform.position = transform.position;
-            SoundManagerHelper.PlayEffect(SoundManager.Instance, "ExplosionEffect", 1);
+            SoundManager.Instance.PlayEffect(CONST.EXPLOSION_SFX, 1);
 
-            for(int i = 0; i < _text.Length; ++i){
+            for (int i = 0; i < _text.Length; ++i){
                 Bullet bullet = Instantiate(_spreadBullet, transform.position, Quaternion.Euler(0, 0, currentAngle + transform.rotation.eulerAngles.z));
+                bullet.gameObject.layer = 28;
                 bullet.DeleteLater(3.5f);
 
                 SpawnManager.Instance.AddSpawnedList(SpawnType.Bullet, bullet);

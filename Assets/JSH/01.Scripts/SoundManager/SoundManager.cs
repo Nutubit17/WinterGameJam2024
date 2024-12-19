@@ -58,6 +58,7 @@ public class SoundManager : MonoBehaviour
 
     private void Init()
     {
+
         GameObject root = GameObject.Find("@Sound");
         if (root == null)
         {
@@ -72,21 +73,14 @@ public class SoundManager : MonoBehaviour
                 go.transform.parent = root.transform;
             }
 
-            _audioSources[(int)SoundType.BGM].loop = true; // ������� ���� �ݺ� ���
+            _audioSources[(int)SoundType.BGM].loop = true;
         }
 
-
-    }
-
-    private void Start()
-    {
-       
         for (int i = 0; i < audioClips.Count; i++)
         {
             AudioClips.Add(str[i], audioClips[i]);
-
         }
-       //Play(_audioClips["TitleBGM"], SoundType.BGM, 1f); 
+
     }
 
     public void Play(AudioClip clip, SoundType type = SoundType.SFX, float volume = 1.0f)
